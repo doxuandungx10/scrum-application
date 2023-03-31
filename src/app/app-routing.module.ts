@@ -132,16 +132,18 @@ import { Error404Component } from './pages/error404/error404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'general-admin', pathMatch: 'full'},
+  { path: '', redirectTo: 'general-project', pathMatch: 'full' },
   {
-    path: 'general-admin',
+    path: 'general-project',
     component: GeneralAdminComponent,
+    canActivate: [AuthGuardService],
   },
   // { path: '', redirectTo: 'admin/index', pathMatch: 'full'},
   {
@@ -261,6 +263,7 @@ const routes: Routes = [
       { path: 'form-element', component: ElementsComponent },
       { path: 'form-validate', component: FormValidateComponent },
     ],
+    canActivate: [AuthGuardService],
   },
 
   { path: 'page-register', component: RegisterComponent },
@@ -277,7 +280,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
+  exports: [RouterModule],
+  providers: [AuthGuardService],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
