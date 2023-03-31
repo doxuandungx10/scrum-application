@@ -35,7 +35,6 @@ export class GeneralAdminComponent implements OnInit {
 
   getListProjectByUser() {
     this.projectService.getListProject(this.userOnline.id).subscribe((res) => {
-      console.log('huongntt', res);
       this.listProject = res;
     });
   }

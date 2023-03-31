@@ -1,10 +1,10 @@
 
-<div id="main-wrapper" [ngClass]="{'menu-toggle': sharedService.hamburgerClass, '': !sharedService.hamburgerClass}"  class="show" >
+<div id="main-wrapper" [ngClass]="{'menu-toggle': sharedService.hamburgerClass, '': !sharedService.hamburgerClass}"  class="show">
     <app-header></app-header>
     <div style="padding-top: 10rem; margin-left: 1rem;">
-        <button (click)="navigate()">Navigate</button>
+        <!-- <button (click)="navigate()">Navigate</button> -->
         <div class="row">
-            <div class="col-sm-2" *ngFor="let proj of listProject">
+            <div class="col-sm-2" *ngFor="let proj of listProject" [routerLink]="['./', proj.projectId]">
                 <div class="card text-white bg-primary">
                     <div class="card-header">
                         <h5 class="card-title text-white">{{proj.name}}</h5>

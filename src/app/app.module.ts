@@ -705,6 +705,7 @@ import { Error404Component } from './pages/error404/error404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
+import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
 
 
 
@@ -712,7 +713,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
   declarations: [
     AppComponent,
     NgbdSortableHeader,
-    
+
     AdminComponent,
     HeaderComponent,
     LoadingComponent,
@@ -728,8 +729,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     QuickTradeComponent,
     RecentTradingActivitiesComponent,
     QuickTransferCrousalComponent,
-    
-    
+
     MyWalletsComponent,
     CardSwiperComponent,
     WalleActivityComponent,
@@ -738,47 +738,46 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     GraphSecondsComponent,
     GraphOthersComponent,
     GraphCoinChartComponent,
-    
+
     TransactionsComponent,
-    
+
     CoinDetailsComponent,
     AboutComponent,
     CoinChartComponent,
     CoinDetailQuickTradeComponent,
     CoinDetailSellOrderComponent,
     CoinDetailBuyOrderComponent,
-    
-    
+
     PortofolioComponent,
     MyProfileComponent,
     MyActivityComponent,
     CurrentGraph1Component,
     CurrentGraph2Component,
-    
+
     MarketCapitalComponent,
-    
+
     ProfileComponent,
     UserStatisticsComponent,
-	InterestComponent,
-	LatestNewsComponent,
-	HighlightsComponent,
-    
-	PostDetailsComponent,
-    
+    InterestComponent,
+    LatestNewsComponent,
+    HighlightsComponent,
+
+    PostDetailsComponent,
+
     ComposeComponent,
-	InboxComponent,
-	ReadComponent,
-    
+    InboxComponent,
+    ReadComponent,
+
     CalenderComponent,
-    
+
     ProductGridComponent,
-	ProductListComponent,
-	ProductDetailComponent,
-	OrderComponent,
-	CheckoutComponent,
-	InvoiceComponent,
-	EcomCustomersComponent,
-      
+    ProductListComponent,
+    ProductDetailComponent,
+    OrderComponent,
+    CheckoutComponent,
+    InvoiceComponent,
+    EcomCustomersComponent,
+
     ApexComponent,
     LineComponent,
     BasicLineChartComponent,
@@ -882,7 +881,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     ChartjsRadarComponent,
     ChartjsPieComponent,
     ChartjsBubbleComponent,
-      
+
     AccordionComponent,
     AccordionBasicComponent,
     AccordionStaticComponent,
@@ -890,17 +889,16 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     AccordionHeaderComponent,
     AccordionPreventchangeComponent,
     AccordionConfigComponent,
-    
+
     AlertComponent,
     AlertCloseableComponent,
     AlertBasicComponent,
     AlertSlefclosingComponent,
     AlertCustomComponent,
     AlertConfigComponent,
-    
 
     ButtonComponent,
-    
+
     ModalComponent,
     BasicModalComponent,
     ModalComponentComponent,
@@ -908,19 +906,19 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     ModalFocusComponent,
     ModalStackedComponent,
     ModalConfigComponent,
-    
+
     BadgeComponent,
-    
+
     ButtonGroupComponent,
-    
+
     ListGroupComponent,
-    
+
     CarouselComponent,
     CarouselBasicComponent,
     CarouselNavigationComponent,
     CarouselPauseComponent,
     CarouselConfigComponent,
-    
+
     DatepickerComponent,
     DatepickerBasicComponent,
     DatepickerPopupComponent,
@@ -936,7 +934,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     DatepickerPositiontargetComponent,
     DatepickerKeyboardComponent,
     DatepickerConfigComponent,
-    
+
     DropdownComponent,
     DropdownBasicComponent,
     DropdownManualComponent,
@@ -945,9 +943,9 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     DropdownContainerComponent,
     DropdownNavbarComponent,
     DropdownConfigComponent,
-    
+
     MediaObjectComponent,
-    
+
     NavComponent,
     NavMarkupComponent,
     NavVerticalComponent,
@@ -957,7 +955,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     NavCustomStyleComponent,
     NavConfigComponent,
     NavBasicComponent,
-    
+
     PaginationComponent,
     PaginationBasicComponent,
     PaginationAdvancedComponent,
@@ -966,7 +964,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     PaginationJustifyComponent,
     PaginationDisabledComponent,
     PaginationConfigComponent,
-    
+
     PopoverComponent,
     PopoverBasicComponent,
     PopoverTplcontentComponent,
@@ -978,7 +976,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     PopoverContainerComponent,
     PopoverCustomclassComponent,
     PopoverConfigComponent,
-    
+
     ProgressbarComponent,
     ProgressbarBasicComponent,
     ProgressbarTexttypesComponent,
@@ -987,7 +985,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     ProgressbarLabelsComponent,
     ProgressbarHeightComponent,
     ProgressbarConfigComponent,
-    
+
     RatingComponent,
     RatingBasicComponent,
     RatingEventsComponent,
@@ -995,14 +993,14 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     RatingDecimalComponent,
     RatingFormComponent,
     RatingConfigComponent,
-    
+
     TableComponent,
     TableBasicComponent,
     TableSortableComponent,
     TableFilteringComponent,
     TablePaginationComponent,
     TableCompleteComponent,
-    
+
     TimepickerComponent,
     TimepickerBasicComponent,
     TimepickerMeridianComponent,
@@ -1013,7 +1011,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TimepickerAdapterComponent,
     TimepickerI18nComponent,
     TimepickerConfigComponent,
-    
+
     ToastComponent,
     ToastInlineComponent,
     ToastCustomComponent,
@@ -1021,7 +1019,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     ToastPreventAutohideComponent,
     ToastGlobalComponent,
     ToastsContainer,
-    
+
     TooltipComponent,
     TooltipBasicComponent,
     TooltipTplcontentComponent,
@@ -1032,7 +1030,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TooltipContainerComponent,
     TooltipCustomclassComponent,
     TooltipConfigComponent,
-    
+
     TypeaheadComponent,
     TypeaheadBasicComponent,
     TypeaheadFocusComponent,
@@ -1041,11 +1039,11 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TypeaheadTemplateComponent,
     TypeaheadPreventManualEntryComponent,
     TypeaheadConfigComponent,
-    
+
     CardsComponent,
     TypographyComponent,
     GridComponent,
-      
+
     DzmtAutocompleteComponent,
     DzmtAutocompleteDisplayComponent,
     DzmtAutocompleteFilterComponent,
@@ -1054,35 +1052,35 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     DzmtAutocompleteOverviewComponent,
     DzmtAutocompletePlaneComponent,
     DzmtAutocompleteSimpleComponent,
-    
+
     DzmtBadgeComponent,
-    
+
     DzmtBottomSheetComponent,
     DzmtButtonComponent,
     DzmtButtonBasicComponent,
     DzmtButtonVarietiesComponent,
-    
+
     DzmtButtonToggleComponent,
     ButtonToggleAppearanceComponent,
     ButtonExclusiveSelectionComponent,
     ButtonWithFormsComponent,
     ButtonBasicTogglesComponent,
-    
+
     DzmtCardComponent,
     CardMultipleSectionsComponent,
     CardBasicComponent,
-    
+
     DzmtCheckboxComponent,
     ConfigurableCheckboxComponent,
     BasicCheckboxComponent,
-    
+
     DzmtChipsComponent,
     ChipsAutocompleteComponent,
     ChipsDragDropComponent,
     ChipsWithInputComponent,
     ChipsBasicComponent,
     ChipsStackedComponent,
-    
+
     DzmtDatepickerComponent,
     ComparisonRangesComponent,
     FormsIntegrationComponent,
@@ -1101,30 +1099,30 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     DatepickerStartDateComponent,
     DatepickerTouchUiComponent,
     DatepickerSelectedValueComponent,
-    
+
     DzmtDialogComponent,
     HeaderScrollbarActionComponent,
     DialogContentExampleDialog,
-    
+
     InjectingDataComponent,
     DialogDataExampleDialog,
-    
+
     DialogElementsComponent,
     DialogElementsExampleDialog,
-    
+
     DialogFromMenuComponent,
     DialogFromMenuExampleDialog,
-    
+
     DialogOverviewComponent,
     DialogOverviewExampleDialog,
-    
+
     DzmtDividerComponent,
-    
+
     DzmtExpansionComponent,
     ExpandCollapseAllTogglesComponent,
     BasicExpansionPanelComponent,
     ExpansionAsAccordionComponent,
-    
+
     DzmtFormFieldComponent,
     AppearanceVariantsComponent,
     FieldWithErrorMessagesComponent,
@@ -1133,14 +1131,14 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     SimpleFormFieldComponent,
     FieldWithPrefixSuffixComponent,
     FieldThemingComponent,
-    
+
     DzmtGridListComponent,
     DynamicGridListComponent,
     BasicGridListComponent,
-    
+
     DzmtIconComponent,
     SvgIconComponent,
-    
+
     DzmtInputComponent,
     InputWithClearButtonComponent,
     InputErrorStateMatcherComponent,
@@ -1149,23 +1147,23 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     InputsWithHintsComponent,
     InputsBasicComponent,
     InputsWithPrefixesSuffixesComponent,
-    
+
     DzmtListComponent,
     BasicListComponent,
     ListWithSectionsComponent,
     ListWithSelectionComponent,
     ListWithSingleSelectionComponent,
-    
+
     DzmtMenuComponent,
     MenuWithIconsComponent,
     NestedMenuComponent,
     BasicMenuComponent,
     MenuPositioningComponent,
-    
+
     DzmtPaginatorComponent,
     ConfigurablePaginatorComponent,
     BasicPaginatorComponent,
-    
+
     DzmtProgressBarComponent,
     BufferProgressBarComponent,
     ConfigurableProgressBarComponent,
@@ -1175,13 +1173,13 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     DzmtProgressSpinnerComponent,
     ConfigurableProgressSpinnerComponent,
     BasicProgressSpinnerComponent,
-    
+
     DzmtRadioComponent,
     RadiosWithNgModelComponent,
     RadiosBasicComponent,
-    
+
     DzmtRippleComponent,
-    
+
     DzmtSelectComponent,
     CustomTriggerTextComponent,
     DisabledSelectComponent,
@@ -1197,28 +1195,28 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     SelectInReactiveFormComponent,
     SelectWithResetOptionComponent,
     TwoWayValueBindingComponent,
-    
+
     DzmtSidenavComponent,
     AutosizeSidenavComponent,
     DrawerExplicitBackdropSettingComponent,
-    
+
     DzmtSlideToggleComponent,
     ConfigurableSlideToggleComponent,
     SlideToggleWithFormsComponent,
     SlideToggleBasicComponent,
-    
+
     DzmtSliderComponent,
     ConfigurableSliderComponent,
     CustomThumbLabelFormattingComponent,
     SliderBasicComponent,
-    
+
     DzmtSnackBarComponent,
     SnackBarCustomComponentComponent,
     BasicSnackBarComponent,
     SnackBarConfigurableComponent,
-    
+
     DzmtSortComponent,
-    
+
     DzmtStepperComponent,
     EditableStepsComponent,
     DisplaysErrorsInStepsComponent,
@@ -1227,7 +1225,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     StepperOverviewComponent,
     StepperCustomizedStatesComponent,
     StepperVerticalComponent,
-    
+
     DzmtTableComponent,
     BasicTableComponent,
     DynamicallyChangingColumnsDisplayedComponent,
@@ -1250,7 +1248,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TableStickyHeaderComponent,
     TableWithConfigurationsInterfaceComponent,
     TableWithSimpleTextHeaderFooterComponent,
-    
+
     DzmtTabsComponent,
     AlignedLabelsComponent,
     TabGroupAnimationsComponent,
@@ -1264,7 +1262,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TabsWithStretchedLabelsComponent,
     TabsWithThemeOptionsComponent,
     BasicUseOfTabNavBarComponent,
-    
+
     DzmtTooltipComponent,
     TooltipAutoHidingComponent,
     TooltipWithCustomClassComponent,
@@ -1275,7 +1273,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TooltipWithHideShowDelayComponent,
     BasicTooltipComponent,
     TooltipWithCustomPositionComponent,
-    
+
     DzmtTreeComponent,
     TreeWithCheckboxesComponent,
     TreeWithCheckboxesComponent,
@@ -1283,15 +1281,15 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     TreeWithFlatNodesComponent,
     TreeWithPartiallyLoadedDataComponent,
     TreeWithNestedNodesComponent,
-    
+
     DzmtToolbarComponent,
     BasicToolbarComponent,
     MultiRowToolbarComponent,
     ToolbarOverviewComponent,
-      
+
     NestableComponent,
     LightGalleryComponent,
-      
+
     WidgetComponent,
     Timeline1Component,
     Timeline2Component,
@@ -1326,22 +1324,21 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     SalesStatusComponent,
     AllSales1Component,
     AllSales2Component,
-    
+
     ElementsComponent,
     FormValidateComponent,
-		
-	RegisterComponent,
-	LoginComponent,
-	LockScreenComponent,
-	ForgotPasswordComponent,
-	Error400Component,
-	Error403Component,
-	Error404Component,
-	Error500Component,
-	Error503Component,
- GeneralAdminComponent,
-    
-    
+
+    RegisterComponent,
+    LoginComponent,
+    LockScreenComponent,
+    ForgotPasswordComponent,
+    Error400Component,
+    Error403Component,
+    Error404Component,
+    Error500Component,
+    Error503Component,
+    GeneralAdminComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -1362,7 +1359,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     NgxDropzoneModule,
     CarouselModule,
     SwiperModule,
-    
+
     MatListModule,
     MatAutocompleteModule,
     MatFormFieldModule,
@@ -1401,9 +1398,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
     MatTooltipModule,
     MatTreeModule,
   ],
-  providers: [
-		SharedService  
-  ],
-  bootstrap: [AppComponent]
+  providers: [SharedService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

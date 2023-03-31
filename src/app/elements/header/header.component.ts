@@ -26,6 +26,6 @@ export class HeaderComponent implements OnInit {
     console.log(event);
   }
   setTheme(value: string) {
-	this.newEvent.emit(value);
+	  this.newEvent.emit(value);
   }
 }

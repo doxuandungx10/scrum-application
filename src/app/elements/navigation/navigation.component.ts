@@ -1,160 +1,153 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
-    
-    public currentHref: string = "";
+  public currentHref: string = '';
+  id: any;
 
-
-  constructor(location: Location, router: Router) {
+  constructor(
+    location: Location,
+    router: Router,
+    private route: ActivatedRoute
+  ) {
     router.events.subscribe((val) => {
-      if(location.path() != ''){
-        this.currentHref = location.path();
+      if (location.path() != '') {
+        this.currentHref = location.path().slice(16);
       } else {
-        this.currentHref = 'Home'
+        this.currentHref = 'Home';
       }
     });
   }
 
-
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
   }
-  
+
   toggleIcon: boolean = true;
-  
-    toggleLoveIcon() {
-        this.toggleIcon = !this.toggleIcon;
-    }
-    
-    dashboardArray = [
-         '/admin',
-         '/admin/index',
-         '/admin/my-wallets',
-         '/admin/transactions',
-         '/admin/coin-details',
-         '/admin/portofolio',
-         '/admin/market-capital',
-         
-	];
-    
-    apsArray = [
-         '/admin/app-profile',
-         '/admin/post-details',
-         '/admin/email-compose',
-         '/admin/email-inbox',
-         '/admin/email-read',
-         '/admin/app-calender',
-         '/admin/ecom-product-grid',
-         '/admin/ecom-product-list',
-         '/admin/ecom-product-detail',
-         '/admin/ecom-product-order',
-         '/admin/ecom-checkout',
-         '/admin/ecom-invoice',
-         '/admin/ecom-customers',
-         
-	];
-    
-    chartsArray = [
-         '/admin/chart-chartjs',
-         '/admin/chart-apex',
-         '/admin/apex-line',
-         '/admin/apex-area',
-         '/admin/apex-column',
-         '/admin/apex-bar',
-         '/admin/apex-mixed',
-         '/admin/apex-timeline',
-         '/admin/apex-candlestick',
-         '/admin/apex-pie',
-         '/admin/apex-radar',
-         '/admin/apex-radialbar',
-         '/admin/apex-polar-area',
-         '/admin/apex-bubble',
-         '/admin/apex-scatter',
-         '/admin/apex-heatmap',
-         '/admin/apex-treemap',
-         '/admin/apex-sparklines',
-	];
-    
-    bootstrapArray = [
-         '/admin/ui-accordion',
-         '/admin/ui-alert',
-         '/admin/ui-badge',
-         '/admin/ui-button',
-         '/admin/ui-datepicker',
-         '/admin/ui-modal',
-         '/admin/ui-button-group',
-         '/admin/ui-list-group',
-         '/admin/ui-media-object',
-         '/admin/ui-card',
-         '/admin/ui-carousel',
-         '/admin/ui-dropdown',
-         '/admin/ui-popover',
-         '/admin/ui-progressbar',
-         '/admin/ui-nav',
-         '/admin/ui-rating',
-         '/admin/ui-typography',
-         '/admin/ui-table',
-         '/admin/ui-pagination',
-         '/admin/ui-timepicker',
-         '/admin/ui-toast',
-         '/admin/ui-tooltip',
-         '/admin/ui-typeahead',
-         '/admin/ui-grid',
-	];
-    
-    materialArray = [
-         '/admin/mat-autocomplete',
-         '/admin/mat-badge',
-         '/admin/mat-bottom-sheet',
-         '/admin/mat-button',
-         '/admin/mat-button-toggle',
-         '/admin/mat-card',
-         '/admin/mat-checkbox',
-         '/admin/mat-chips',
-         '/admin/mat-datepicker',
-         '/admin/mat-dialog',
-         '/admin/mat-divider',
-         '/admin/mat-expansion',
-         '/admin/mat-form-field',
-         '/admin/mat-grid-list',
-         '/admin/mat-icon',
-         '/admin/mat-input',
-         '/admin/mat-list',
-         '/admin/mat-menu',
-         '/admin/mat-paginator',
-         '/admin/mat-progress-bar',
-         '/admin/mat-progress-spinner',
-         '/admin/mat-radio',
-         '/admin/mat-ripple',
-         '/admin/mat-select',
-         '/admin/mat-sidenav',
-         '/admin/mat-slide-toggle',
-         '/admin/mat-slider',
-         '/admin/mat-snack-bar',
-         '/admin/mat-sort',
-         '/admin/mat-stepper',
-         '/admin/mat-table',
-         '/admin/mat-tab',
-         '/admin/mat-tooltip',
-         '/admin/mat-tree',
-         '/admin/mat-toolbar',
-	];
-    
-    pluginsArray = [
-         '/admin/uc-nestable',
-         '/admin/uc-lightgallery',
-	];
-    
-    formsArray = [
-         '/admin/form-element',
-         '/admin/form-validate',
-	];
 
+  toggleLoveIcon() {
+    this.toggleIcon = !this.toggleIcon;
+  }
 
+  dashboardArray = [
+    '/admin',
+    'index',
+    'my-wallets',
+    'transactions',
+    'coin-details',
+    'portofolio',
+    'market-capital',
+  ];
+
+  apsArray = [
+    'app-profile',
+    'post-details',
+    'email-compose',
+    'email-inbox',
+    'email-read',
+    'app-calender',
+    'ecom-product-grid',
+    'ecom-product-list',
+    'ecom-product-detail',
+    'ecom-product-order',
+    'ecom-checkout',
+    'ecom-invoice',
+    'ecom-customers',
+  ];
+
+  chartsArray = [
+    'chart-chartjs',
+    'chart-apex',
+    'apex-line',
+    'apex-area',
+    'apex-column',
+    'apex-bar',
+    'apex-mixed',
+    'apex-timeline',
+    'apex-candlestick',
+    'apex-pie',
+    'apex-radar',
+    'apex-radialbar',
+    'apex-polar-area',
+    'apex-bubble',
+    'apex-scatter',
+    'apex-heatmap',
+    'apex-treemap',
+    'apex-sparklines',
+  ];
+
+  bootstrapArray = [
+    'ui-accordion',
+    'ui-alert',
+    'ui-badge',
+    'ui-button',
+    'ui-datepicker',
+    'ui-modal',
+    'ui-button-group',
+    'ui-list-group',
+    'ui-media-object',
+    'ui-card',
+    'ui-carousel',
+    'ui-dropdown',
+    'ui-popover',
+    'ui-progressbar',
+    'ui-nav',
+    'ui-rating',
+    'ui-typography',
+    'ui-table',
+    'ui-pagination',
+    'ui-timepicker',
+    'ui-toast',
+    'ui-tooltip',
+    'ui-typeahead',
+    'ui-grid',
+  ];
+
+  materialArray = [
+    'mat-autocomplete',
+    'mat-badge',
+    'mat-bottom-sheet',
+    'mat-button',
+    'mat-button-toggle',
+    'mat-card',
+    'mat-checkbox',
+    'mat-chips',
+    'mat-datepicker',
+    'mat-dialog',
+    'mat-divider',
+    'mat-expansion',
+    'mat-form-field',
+    'mat-grid-list',
+    'mat-icon',
+    'mat-input',
+    'mat-list',
+    'mat-menu',
+    'mat-paginator',
+    'mat-progress-bar',
+    'mat-progress-spinner',
+    'mat-radio',
+    'mat-ripple',
+    'mat-select',
+    'mat-sidenav',
+    'mat-slide-toggle',
+    'mat-slider',
+    'mat-snack-bar',
+    'mat-sort',
+    'mat-stepper',
+    'mat-table',
+    'mat-tab',
+    'mat-tooltip',
+    'mat-tree',
+    'mat-toolbar',
+  ];
+
+  pluginsArray = ['uc-nestable', 'uc-lightgallery'];
+
+  formsArray = ['form-element', 'form-validate'];
 }

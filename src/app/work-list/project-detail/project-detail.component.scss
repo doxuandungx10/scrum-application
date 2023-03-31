@@ -1,0 +1,39 @@
+.body-tab {
+    display: flex;
+    flex-direction: row;
+    li {
+        list-style: none;
+        padding: 5px 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .active-tab,
+    li:hover {
+        background: #3f6ad8;
+        color: #fff;
+    }
+}
+
+.project-container {
+    //padding: 10px;
+}
+
+.project-header {
+    height: 50px;
+    display: flex;
+    div {
+        align-items: center;
+    }
+    h4 {
+        margin-bottom: 0pc !important;
+    }
+}
+
+.dpl-fl {
+    display: flex;
+}
+
+.mgr-10 {
+    margin-right: 10px;
+}

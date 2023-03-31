@@ -133,22 +133,22 @@ import { Error500Component } from './pages/error500/error500.component';
 import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
 
 
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'general-project', pathMatch: 'full' },
+  { path: '', redirectTo: 'general-info', pathMatch: 'full' },
   {
-    path: 'general-project',
+    path: 'general-info',
     component: GeneralAdminComponent,
     canActivate: [AuthGuardService],
   },
-  // { path: '', redirectTo: 'admin/index', pathMatch: 'full'},
   {
-    path: 'admin',
-    component: AdminComponent,
+    path: 'general-info/:id',
+    component: ProjectDetailComponent,
     children: [
       { path: '', component: DashboardComponent },
       { path: 'index', component: DashboardComponent },
@@ -265,7 +265,8 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuardService],
   },
-
+  // { path: '', redirectTo: 'admin/index', pathMatch: 'full'},
+ 
   { path: 'page-register', component: RegisterComponent },
   { path: 'page-login', component: LoginComponent },
   { path: 'page-lock-screen', component: LockScreenComponent },

@@ -14,17 +14,13 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { DndModule } from 'ngx-drag-drop';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
-import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
-import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
-    ImageCropperComponent
   ],
   imports: [
     CommonModule,
@@ -42,12 +38,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NzCheckboxModule,
     NzDropDownModule,
     NzDatePickerModule,
-    DndModule,
     DragDropModule,
     NzToolTipModule,
     NzUploadModule,
     NzNotificationModule,
-    ImageCropperModule,
   ],
   exports: [
     FormsModule,
@@ -64,13 +58,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NzCheckboxModule,
     NzDropDownModule,
     NzDatePickerModule,
-    DndModule,
     DragDropModule,
     NzToolTipModule,
     NzUploadModule,
     NzNotificationModule,
-    ImageCropperModule,
-    ImageCropperComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
