@@ -37,7 +37,7 @@ export class NavigationComponent implements OnInit {
 
   dashboardArray = [
     '/admin',
-    'index',
+    'overview',
     'my-wallets',
     'transactions',
     'coin-details',

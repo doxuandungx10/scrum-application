@@ -151,7 +151,7 @@ const routes: Routes = [
     component: ProjectDetailComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'index', component: DashboardComponent },
+      { path: 'overview', component: DashboardComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },

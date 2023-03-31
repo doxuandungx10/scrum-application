@@ -11,7 +11,7 @@
         </div>
         <ul class="metismenu" id="menu" metis-menu>
             <li [ngClass]="{'mm-active': dashboardArray.indexOf(currentHref) > -1}">
-                <a class="{{(currentHref == 'index' || currentHref == '/admin') ? 'mm-active' : ''}}" [routerLink]="['index']" href="javascript:void()" aria-expanded="false">
+                <a class="{{(currentHref == 'overview' || currentHref == '') ? 'mm-active' : ''}}" [routerLink]="['overview']" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-144-layout"></i>
                     <span class="nav-text">Overview</span>
                 </a>

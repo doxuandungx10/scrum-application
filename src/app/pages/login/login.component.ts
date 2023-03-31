@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome() {
-    this.router.navigate(['/general-admin']);
+    this.router.navigate(['/general-info']);
   }
 
   login() {
