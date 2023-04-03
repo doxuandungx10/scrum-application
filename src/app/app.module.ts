@@ -706,6 +706,7 @@ import { Error500Component } from './pages/error500/error500.component';
 import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
 import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
+import { OverviewComponent } from './work-list/overview/overview.component';
 
 
 
@@ -1338,7 +1339,8 @@ import { ProjectDetailComponent } from './work-list/project-detail/project-detai
     Error500Component,
     Error503Component,
     GeneralAdminComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

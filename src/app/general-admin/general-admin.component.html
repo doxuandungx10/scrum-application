@@ -1,7 +1,8 @@
 
 <div id="main-wrapper" [ngClass]="{'menu-toggle': sharedService.hamburgerClass, '': !sharedService.hamburgerClass}"  class="show">
+    <app-nav-header></app-nav-header>
     <app-header></app-header>
-    <div style="padding-top: 10rem; margin-left: 1rem;">
+    <div style="padding-top: 10rem; margin-left: 1rem; margin-right: 1rem;">
         <!-- <button (click)="navigate()">Navigate</button> -->
         <div class="row">
             <div class="col-sm-2" *ngFor="let proj of listProject" [routerLink]="['./', proj.projectId]">

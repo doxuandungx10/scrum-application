@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -134,8 +134,7 @@ import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
-
-
+import { OverviewComponent } from './work-list/overview/overview.component';
 
 
 
@@ -151,7 +150,7 @@ const routes: Routes = [
     component: ProjectDetailComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'overview', component: DashboardComponent },
+      { path: 'overview', component: OverviewComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },
@@ -279,6 +278,14 @@ const routes: Routes = [
 
   { path: '**', component: Error404Component },
 ];
+
+
+export const routingConfiguration: ExtraOptions = {
+  paramsInheritanceStrategy: 'always',
+};
+
+export const Routing = RouterModule.forRoot(routes, routingConfiguration);
+
 
 @NgModule({
   imports: [

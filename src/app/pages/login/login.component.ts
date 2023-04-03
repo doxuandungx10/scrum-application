@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           console.log('login', res);
           localStorage.setItem(Constant.TOKEN, res.token);
           localStorage.setItem('user', res.user);
-          this.router.navigate(['general-admin']);
+          this.router.navigate(['general-info']);
           this.authService.isAdmin.next(res.user.isAdmin);
           this.authService.isloggedInSub.next(true);
         } else {
