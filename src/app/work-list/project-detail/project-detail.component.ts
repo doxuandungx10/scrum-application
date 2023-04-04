@@ -33,10 +33,10 @@ export class ProjectDetailComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await (this.projectId = this.router.snapshot.paramMap.get('id'));
-    this.getListSprint();
-    await this.getProject();
-    this.getListUser();
+    // await (this.projectId = this.router.snapshot.paramMap.get('id'));
+    // this.getListSprint();
+    // await this.getProject();
+    // this.getListUser();
   }
 
   getListSprint() {

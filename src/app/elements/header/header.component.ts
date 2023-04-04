@@ -9,7 +9,7 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
   toggleChat: boolean = true;
   toggleSingle: boolean = true;
-  defaultLightMode: boolean = true;
+  defaultLightMode: boolean = false;
   @Output() newEvent = new EventEmitter<string>();
 
   constructor() {}
