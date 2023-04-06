@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Member</h4>
-                        <button type="button" class="btn light btn-primary" (click)="open(contentbasic)">Thêm mới</button>
+                        <button type="button" class="btn light btn-primary" (click)="openModalAddUser()">Thêm mới</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<ng-template #contentbasic let-modal>
+<!-- <ng-template #contentbasic let-modal>
   <div class="modal-header">
 	<h4 class="modal-title" id="modal-basic-title">Chọn user</h4>
 	<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -57,16 +57,9 @@
 	<form>
 	  <div class="form-group">
 		<div class="input-group">
-          <input
-            id="typeahead-focus"
-            type="text"
-            class="form-control"
-            [(ngModel)]="listSelectedUserId"
-            [ngbTypeahead]="search"
-            (focus)="focus$.next($any($event).target.value)"
-            (click)="click$.next($any($event).target.value)"
-            #instance="ngbTypeahead"
-            />
+            <nz-select class="form-control" nzMode="multiple" [(ngModel)]="listSelectedUserId" nzPlaceHolder="Chọn user">
+                <nz-option *ngFor="let data of listAllUserSystem" [nzValue]="data.id" [nzLabel]="data.fullName"></nz-option>
+            </nz-select>
 		</div>
 	  </div>
 	</form>
@@ -74,4 +67,17 @@
   <div class="modal-footer">
 	<button type="button" class="btn light btn-primary" (click)="modal.close('Save click')">Save</button>
   </div>
-</ng-template>
+</ng-template> -->
+
+<nz-modal [(nzVisible)]="isVisibleAddUser" nzClassName="add-user" nzTitle="Thêm User" (nzOnCancel)="handleCancel()" (nzOnOk)="addUser()">
+    <div *nzModalContent>
+        <nz-select style="width: 100%; height: 56px; border-radius: 10px" nzMode="multiple" nzPlaceHolder="Chọn user" [(ngModel)]="listSelectedUserId">
+            <nz-option *ngFor="let data of listAllUserSystem" [nzValue]="data.id" [nzLabel]="data.fullName"></nz-option>
+        </nz-select>
+    </div>
+    
+    <div *nzModalFooter>
+        <button type="button" class="btn btn-outline-dark mgr10" (click)="handleCancel()">Hủy</button>
+    	<button type="button" class="btn light btn-primary mgr10" (click)="addUser()">Save</button>
+    </div>
+</nz-modal>

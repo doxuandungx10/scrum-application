@@ -26,6 +26,7 @@ export class OverviewComponent implements OnInit {
   listAllUserSystem: any[] = [];
   initialProject: any;
   listSelectedUserId: any;
+  isVisibleAddUser: boolean = false;
 
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
   focus$ = new Subject<string>();
@@ -103,5 +104,13 @@ export class OverviewComponent implements OnInit {
       .subscribe((res) => {
         this.getListUserByProjectId();
       });
+  }
+
+  handleCancel() {
+    this.isVisibleAddUser = false;
+  }
+
+  openModalAddUser() {
+    this.isVisibleAddUser = true;
   }
 }

@@ -707,6 +707,8 @@ import { Error503Component } from './pages/error503/error503.component';
 import { GeneralAdminComponent } from './general-admin/general-admin.component';
 import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
 import { OverviewComponent } from './work-list/overview/overview.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ShareModule } from './share/share.module';
 
 
 
@@ -1340,7 +1342,7 @@ import { OverviewComponent } from './work-list/overview/overview.component';
     Error503Component,
     GeneralAdminComponent,
     ProjectDetailComponent,
-    OverviewComponent
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -1399,6 +1401,7 @@ import { OverviewComponent } from './work-list/overview/overview.component';
     MatTableModule,
     MatTooltipModule,
     MatTreeModule,
+    ShareModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent],
