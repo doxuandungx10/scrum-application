@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-  
+import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -709,6 +708,7 @@ import { ProjectDetailComponent } from './work-list/project-detail/project-detai
 import { OverviewComponent } from './work-list/overview/overview.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ShareModule } from './share/share.module';
+import { BacklogComponent } from './work-list/backlog/backlog.component';
 
 
 
@@ -1343,9 +1343,10 @@ import { ShareModule } from './share/share.module';
     GeneralAdminComponent,
     ProjectDetailComponent,
     OverviewComponent,
+    BacklogComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

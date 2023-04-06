@@ -46,6 +46,7 @@ export class NavigationComponent implements OnInit {
   ];
 
   apsArray = [
+    'backlog',
     'app-profile',
     'post-details',
     'email-compose',

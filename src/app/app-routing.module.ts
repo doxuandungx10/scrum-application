@@ -135,6 +135,7 @@ import { GeneralAdminComponent } from './general-admin/general-admin.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
 import { OverviewComponent } from './work-list/overview/overview.component';
+import { BacklogComponent } from './work-list/backlog/backlog.component';
 
 
 
@@ -151,6 +152,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'overview', component: OverviewComponent },
+      { path: 'backlog', component: BacklogComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },
@@ -265,7 +267,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   // { path: '', redirectTo: 'admin/index', pathMatch: 'full'},
- 
+
   { path: 'page-register', component: RegisterComponent },
   { path: 'page-login', component: LoginComponent },
   { path: 'page-lock-screen', component: LockScreenComponent },

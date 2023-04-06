@@ -1,0 +1,89 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <div>
+            <button type="button" class="btn tp-btn-light btn-primary" (click)="openModalAddBacklog()">Thêm mới</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Hạng mục</th>
+                <th scope="col">Chi tiết</th>
+                <th scope="col">Người thực hiện</th>
+                <th scope="col">Piority</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of listBacklog; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{data.name}}</td>
+                <td>{{data.description}}</td>
+                <td>{{data.performerName}}</td>
+                <td>{{data.priority}}</td>
+                <td>{{data.statusText}}</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<nz-modal [(nzVisible)]="isVisibleModalBacklog" nzTitle="Thông tin Backlog" (nzOnCancel)="handleCancel()">
+    <div [formGroup]="backlogForm">
+        <div class="row mgb-10">
+            <div class="col-md-3">Hạng mục</div>
+            <div class="col-md-9">
+                <input nz-input formControlName="name" type="text">
+            </div>
+        </div>
+        <div class="row mgb-10">
+            <div class="col-md-3">Chi tiết</div>
+            <div class="col-md-9">
+                <textarea nz-input formControlName="description" type="text"></textarea>
+            </div>
+        </div>
+        <div class="row mgb-10">
+            <div class="col-md-3">Người thực hiện</div>
+            <div class="col-md-9">
+                <nz-select formControlName="userId">
+                    <nz-option *ngFor="let item of listUser" [nzValue]="item.userId" [nzLabel]="item.fullName"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <!-- <div class="row mgb-10">
+            <div class="col-md-3">Module</div>
+            <div class="col-md-9">
+                <input nz-input formControlName="module" type="text">
+            </div>
+        </div> -->
+        <div class="row mgb-10">
+            <div class="col-md-3">Status</div>
+            <div class="col-md-9">
+                <div>{{f['statusText'].value}}</div>
+                <!-- <input nz-input type="text" formControlName="statusText" nzDisabled="true"> -->
+            </div>
+        </div>
+        <div class="row mgb-10">
+            <div class="col-md-3">Priority</div>
+            <div class="col-md-9">
+                <input nz-input formControlName="priority" type="number">
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-2">Module</div>
+            <div class="col-md-10">
+                <nz-select formControlName="module">
+                    <nz-option [nzValue]="0" nzLabel="Web"></nz-option>
+                    <nz-option [nzValue]="1" nzLabel="App"></nz-option>
+                </nz-select>
+            </div>
+        </div> -->
+    </div>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" nzDanger (click)="handleCancel()">Hủy</button>
+        <button *ngIf="isAdd" nzType="primary" nz-button (click)="addBacklog()">Thêm</button>
+        <button *ngIf="!isAdd" nzType="primary" nz-button (click)="updateBacklog()">Sửa</button>
+    </div>
+</nz-modal>
