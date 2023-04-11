@@ -18,10 +18,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NotificationService } from '../services/share-service/notification.service';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -63,6 +63,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     NzUploadModule,
     NzNotificationModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [NotificationService],
 })
-export class ShareModule { }
+export class ShareModule {}

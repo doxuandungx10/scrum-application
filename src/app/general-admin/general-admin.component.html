@@ -5,7 +5,7 @@
     <div style="padding-top: 10rem; margin-left: 1rem; margin-right: 1rem;">
         <!-- <button (click)="navigate()">Navigate</button> -->
         <div class="row">
-            <div class="col-sm-2" *ngFor="let proj of listProject" [routerLink]="['./', proj.projectId]">
+            <div class="col-sm-2 project-card" *ngFor="let proj of listProject" [routerLink]="['./', proj.projectId]">
                 <div class="card text-white bg-primary">
                     <div class="card-header">
                         <h5 class="card-title text-white">{{proj.name}}</h5>

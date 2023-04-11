@@ -1,14 +1,30 @@
 export class Constant {
-    public static readonly TOKEN = "jwt";
-    public static readonly ROLES : Record<string, number> = {
-      SystemAdmin : 0,
-      Admin : 1,
-      PO : 2,
-      PM : 3,
-      SU : 4,
-      Member : 5
-    };
-  public static readonly DEFAULT_AVATAR = "assets/image/cute_avatar.png";
+  public static readonly TOKEN = 'jwt';
+  public static readonly ROLES: Record<string, number> = {
+    SystemAdmin: 0,
+    Admin: 1,
+    PO: 2,
+    PM: 3,
+    SU: 4,
+    Member: 5,
+  };
+  public static readonly DEFAULT_AVATAR = 'assets/image/cute_avatar.png';
+
+  public static readonly MESSAGE_DELETE_SUCCESS = 'Xóa thành công';
+  public static readonly MESSAGE_ADD_SUCCESS = 'Tạo mới thành công';
+  public static readonly MESSAGE_SERVICE_ERROR = 'Lỗi dữ liệu';
+  public static readonly MESSAGE_UPDATE_SUCCESS = 'Cập nhật thành công';
+  public static readonly SUCCESS = 'success';
+  public static readonly WAREHOUSE_ID = 'selected_warehouse_id';
+  public static readonly WAREHOUSE_MASTER = 'is_warehouse_master';
+  public static readonly ERROR = 'error';
+  public static readonly WARNING = 'warning';
+  public static readonly ACTION = 'action';
+  public static readonly USER_INFO = 'user';
+  public static readonly LOGIN_FAIL = 'Incorrect username and/or password.';
+  public static readonly DELETE = 'Xóa';
+  public static readonly CREATE = 'Thêm';
+  public static readonly UPDATE = 'Sửa';
 }
 
 export class UrlConstant{

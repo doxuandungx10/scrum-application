@@ -9,6 +9,8 @@ import { ShareService } from 'src/app/services/share.service';
 import { Sprint } from 'src/app/share/class/sprint.class';
 import { SprintBacklog } from 'src/app/share/class/sprintbacklog.class';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
+import { Constant } from 'src/app/share/Constants/Constant';
 
 @Component({
   selector: 'app-backlog',
@@ -49,7 +51,8 @@ export class BacklogComponent implements OnInit {
     private fb: FormBuilder,
     private sprintService: SprintService,
     private shareService: ShareService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService,
   ) {
     this.backlogForm = this.fb.group({
       id: [null],
@@ -133,6 +136,7 @@ export class BacklogComponent implements OnInit {
     //if (this.backlogForm.valid)
     {
       this.backlogService.addBacklog(payload).subscribe((res) => {
+        this.notificationService.showNotification(Constant.SUCCESS, Constant.MESSAGE_ADD_SUCCESS);
         this.isVisibleModalBacklog = false;
         this.getListBacklog();
       });
@@ -154,6 +158,7 @@ export class BacklogComponent implements OnInit {
       };
       console.log('huongntt payload', payload);
       this.backlogService.updateBacklog(payload).subscribe((res) => {
+        this.notificationService.showNotification(Constant.SUCCESS, Constant.MESSAGE_UPDATE_SUCCESS);
         this.isVisibleModalBacklog = false;
         this.getListBacklog();
       });
@@ -236,5 +241,10 @@ export class BacklogComponent implements OnInit {
       });
     this.allCheckedCurrentPage = false;
     this.listConvert = [];
+  }
+
+  log(data: any) {
+    console.log(this.listUser);
+    console.log(data);
   }
 }

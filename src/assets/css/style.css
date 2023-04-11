@@ -44710,3 +44710,16 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .mgr10 {
   margin-right: 10px;
 }
+
+.mgb-10 {
+  margin-bottom: 10px;
+}
+
+i {
+  color: #00838f;
+}
+
+i:hover {
+  cursor: pointer;
+  color: #EB8153;
+}
