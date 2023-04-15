@@ -63,6 +63,7 @@ export class NavigationComponent implements OnInit {
   ];
 
   chartsArray = [
+    'sprint',
     'chart-chartjs',
     'chart-apex',
     'apex-line',

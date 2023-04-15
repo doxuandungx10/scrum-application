@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -709,6 +709,8 @@ import { OverviewComponent } from './work-list/overview/overview.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ShareModule } from './share/share.module';
 import { BacklogComponent } from './work-list/backlog/backlog.component';
+import { SprintComponent } from './work-list/sprint/sprint.component';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 
 
@@ -1343,7 +1345,8 @@ import { BacklogComponent } from './work-list/backlog/backlog.component';
     GeneralAdminComponent,
     ProjectDetailComponent,
     OverviewComponent,
-    BacklogComponent
+    BacklogComponent,
+    SprintComponent
   ],
   imports: [
     CommonModule,
@@ -1404,7 +1407,7 @@ import { BacklogComponent } from './work-list/backlog/backlog.component';
     MatTreeModule,
     ShareModule
   ],
-  providers: [SharedService],
+  providers: [SharedService, { provide: NZ_I18N, useValue: en_US }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

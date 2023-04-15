@@ -136,6 +136,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ProjectDetailComponent } from './work-list/project-detail/project-detail.component';
 import { OverviewComponent } from './work-list/overview/overview.component';
 import { BacklogComponent } from './work-list/backlog/backlog.component';
+import { SprintComponent } from './work-list/sprint/sprint.component';
 
 
 
@@ -153,6 +154,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'overview', component: OverviewComponent },
       { path: 'backlog', component: BacklogComponent },
+      { path: 'sprint', component: SprintComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },

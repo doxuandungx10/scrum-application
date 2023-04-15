@@ -1,0 +1,162 @@
+.sprint-body {
+    display: flex;
+}
+
+.sprint-detail {
+    width: calc(100% - 200px);
+}
+
+.list-sprint {
+    width: 200px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    // background: hsl(60, 5%, 92%);
+    >div:not(:last-child) {
+        border-bottom: 1px solid #fff;
+    }
+}
+
+.list-sprint_title {
+    padding: 10px;
+    border-bottom: none;
+}
+
+.active {
+    background: #fff;
+    border-left: 3px solid #49654c;
+}
+
+.item-sprint {
+    padding: 5px;
+}
+
+.sprint-header {
+    display: flex;
+}
+
+.line-hover:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+.mgb-10 {
+    margin-bottom: 10px;
+}
+
+.mgb-20 {
+    margin-bottom: 20px;
+}
+
+.mgr-10 {
+    margin-right: 10px;
+}
+
+.mgt-5 {
+    margin-top: 3px;
+}
+
+.cur {
+    cursor: pointer;
+}
+
+.detail {
+    position: absolute;
+    right: 20px;
+    line-height: 25px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.list-item {
+    min-height: 300px;
+    background: #E5D0E1;
+    border-radius: 4px;
+    padding: 15px;
+    .item-data {
+        margin-bottom: 10px;
+    }
+}
+
+.status-0 {
+    //color: pink;
+}
+
+.status-1 {
+    color: #006899;
+}
+
+.status-2 {
+    color: #008F68;
+}
+
+.circle {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin: 8px;
+    margin-left: 10px;
+}
+
+.todo-view {
+    background: black;
+}
+
+.doing-view {
+    background: #006899;
+}
+
+.done-view {
+    background: #008F68;
+}
+
+.dpl-fl {
+    display: flex;
+}
+
+.status-line {
+    margin-left: 20px;
+}
+
+.backlog-content {
+    padding: 5px 20px;
+}
+
+.item-data {
+    &>div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    &:hover {
+        .not-target {
+            display: block !important;
+        }
+    }
+    .not-target {
+        display: none;
+    }
+}
+
+::ng-deep .accordion > .card:last-of-type {
+    background-color: transparent;
+}
+
+::ng-deep .sprint-target .accordion > .card .card-header {
+    width: 12%;
+}
+
+::ng-deep .sprint-backlog .accordion > .card .card-header {
+    width: 20%;
+}
+
+::ng-deep .custom-header-accordion {
+    border: none;
+}
