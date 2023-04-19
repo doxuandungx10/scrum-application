@@ -75,37 +75,10 @@
                                             </div>
                                         </div>
                                         <button ngbPanelToggle class="btn btn-link p-0">
-                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseTarget" nz-icon nzType="right" nzTheme="outline" (click)="collapseTarget()"></i>
-                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseTarget" nz-icon nzType="down" nzTheme="outline" (click)="collapseTarget()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseList" nz-icon nzType="right" nzTheme="outline" (click)="collapseList()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseList" nz-icon nzType="down" nzTheme="outline" (click)="collapseList()"></i>
                                         </button>
                                     </div>
-                                    <!-- <div nz-row>
-                                        <div nz-col nzSpan="4">
-                                            <h5 class="m-0">Sprint Backlog</h5>
-                                        </div>
-                                        <div nz-col nzSpan="6">
-                                            <div class="dpl-fl status-line">
-                                                <div class="dpl-fl">
-                                                    <div class="circle todo-view"></div>
-                                                    <span>To Do</span>
-                                                </div>
-                                                <div class="dpl-fl">
-                                                    <div class="circle doing-view"></div>
-                                                    <span class="status-1">Doing</span>
-                                                </div>
-                                                <div class="dpl-fl">
-                                                    <div class="circle done-view"></div>
-                                                    <span class="status-2">Done</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div nz-col nzSpan="6">
-                                            <button ngbPanelToggle class="btn btn-link p-0">
-                                                <i class="mgt-5 mgr-10" *ngIf="isCollapseList" nz-icon nzType="right" nzTheme="outline" (click)="collapseList()"></i>
-                                                <i class="mgt-5 mgr-10" *ngIf="!isCollapseList" nz-icon nzType="down" nzTheme="outline" (click)="collapseList()"></i>
-                                            </button>
-                                        </div>
-                                    </div> -->
                                 </ng-template>
                                 <ng-template ngbPanelContent>
                                     <div class="row">
@@ -138,96 +111,67 @@
                                 </ng-template>
                             </ngb-panel>
                         </ngb-accordion>
+                    </div>
+                    <div class="mgb-20">
+                        <ngb-accordion>
+                            <ngb-panel cardClass="custom-header-accordion">
+                                <ng-template ngbPanelHeader let-opened="opened">
+                                    <div class="d-flex align-items-center justify-content-between w-100">
+                                        <h5 class="m-0">Time Working Off</h5>
+                                        <button ngbPanelToggle class="btn btn-link p-0">
+                                             <i class="mgt-5 mgr-10" *ngIf="isCollapseTime" nz-icon nzType="right" nzTheme="outline" (click)="collapseTime()"></i>
+                                             <i class="mgt-5 mgr-10" *ngIf="!isCollapseTime" nz-icon nzType="down" nzTheme="outline" (click)="collapseTime()"></i>
 
-                        <!-- <div class="sprint-header mgb-10">
-                            <div class="dpl-fl cur" (click)="collapseList()">
-                                <h4 class="text-title">Sprint Backlog</h4>
-                                <i class="mgt-5 mgr-10" *ngIf="!isCollapseList" nz-icon nzType="right" nzTheme="outline"></i>
-                                <i class="mgt-5 mgr-10" *ngIf="isCollapseList" nz-icon nzType="down" nzTheme="outline"></i>
-                            </div>
-        
-                            
-                        </div>
-                        <div *ngIf="isCollapseList" class="row backlog-content">
-                            <div class="col-md-6">
-                                <div class="list-item">
-                                    <h5>Priority 1</h5>
-                                    <div class="line-hover item-data status-{{item.status}}" *ngFor="let item of listSprintBacklog">
-                                        <div>
-                                            <div>
-                                                <span (click)="showModalDetail(item)">{{item.name}}&nbsp;</span>
-                                                <span *ngIf="item.totalTask>0">{{item.doneTask}}/{{item.totalTask}}</span>
-                                            </div>
-                                            <span class="is-target" (click)="insertSprintTarget(item)">
-                                                <i class="not-target" *ngIf="!item.isTarget" nz-icon nzType="star" nzTheme="outline"></i>
-                                                <i *ngIf="item.isTarget" nz-icon [nzType]="'star'" [nzTheme]="'twotone'" [nzTwotoneColor]="'red'"></i>
-                                            </span>
+                                        </button>
+                                    </div>
+                                </ng-template>
+                                <ng-template ngbPanelContent>
+                                    <div class="dpl-fl">
+                                        <div class="mgr-10 cur" (click)="addDayOff()">
+                                            <i class="fa-regular fa-plus"></i>
+                                            <span>&nbsp;Thêm</span>
+                                        </div>
+                                        <div class="cur" (click)="updateTime()">
+                                            <i class="fa-regular fa-floppy-disk"></i>
+                                            <span>&nbsp;Save</span>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="list-item">
-                                    <h5>Priority 2</h5>
-                                    <div class="line-hover item-data status-{{item.status}}" (click)="showModalDetail(item)" *ngFor="let item of listSprintBacklog">
-                                        <div *ngIf="item.priority==2">{{item.name}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div>
-                        <div class="dpl-fl cur" (click)="collapseTime()">
-        
-                            <h4 class="text-title">Time Working Off</h4>
-                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseTime" nz-icon nzType="right" nzTheme="outline"></i>
-                            <i class="mgt-5 mgr-10" *ngIf="isCollapseTime" nz-icon nzType="down" nzTheme="outline"></i>
-                        </div>
-                        <div *ngIf="isCollapseTime" class="">
-                            <div class="dpl-fl">
-                                <div class="mgr-10 cur" (click)="addDayOff()">
-                                    <i nz-icon nzType="plus" nzTheme="outline"></i>
-                                    <span>&nbsp;Thêm</span>
-                                </div>
-                                <div class="cur" (click)="updateTime()">
-                                    <i nz-icon nzType="save" nzTheme="outline"></i>
-                                    <span>&nbsp;Save</span>
-                                </div>
-                            </div>
-                            <nz-table #dayOffTable [nzData]="listDayOff" nzOuterBordered>
-                                <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Ngày nghỉ</th>
-                                        <th>Tổng ngày nghỉ</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let data of listDayOff; index as i">
-                                        <td>
-                                            <nz-select [(ngModel)]="data.userId">
-                                                <nz-option *ngFor="let user of listUser" [nzValue]="user.id" [nzLabel]="user.fullName"></nz-option>
-                                            </nz-select>
-                                        </td>
-                                        <td><nz-date-picker nzFormat="dd/MM/yyyy"  [(ngModel)]="data.dayOff" ></nz-date-picker></td>
-                                        <td>
-                                            <!-- <input nz-input [(ngModel)]="data.totalDayOff" type="number">  formControlName="timeOffEnd" -->
-                                            
-                                           <nz-select nzAllowClear nzPlaceHolder="Thời gian nghỉ" [(ngModel)]="data.dayShift" class="w-100">
-                                                <nz-option nzLabel="Cả ngày" [nzValue]=0></nz-option>
-                                                <nz-option nzLabel="Sáng" [nzValue]=1></nz-option>
-                                                <nz-option nzLabel="Chiều" [nzValue]=2></nz-option>
-                                            </nz-select>
-                                        </td>
-        
-                                        <td>
-                                            <i (click)="removeTime(i)" nz-icon nzType="minus" nzTheme="outline"></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </nz-table>
-                        </div>
+                                    <nz-table #dayOffTable [nzData]="listDayOff" nzOuterBordered>
+                                        <thead>
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Ngày nghỉ</th>
+                                                <th>Tổng ngày nghỉ</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let data of listDayOff; index as i">
+                                                <td>
+                                                    <nz-select [(ngModel)]="data.userId">
+                                                        <nz-option *ngFor="let user of listUser" [nzValue]="user.id" [nzLabel]="user.fullName"></nz-option>
+                                                    </nz-select>
+                                                </td>
+                                                <td><nz-date-picker nzFormat="dd/MM/yyyy"  [(ngModel)]="data.dayOff" ></nz-date-picker></td>
+                                                <td>
+                                                    <!-- <input nz-input [(ngModel)]="data.totalDayOff" type="number">  formControlName="timeOffEnd" -->
+                                                    
+                                                <nz-select nzAllowClear nzPlaceHolder="Thời gian nghỉ" [(ngModel)]="data.dayShift" class="w-100">
+                                                        <nz-option nzLabel="Cả ngày" [nzValue]=0></nz-option>
+                                                        <nz-option nzLabel="Sáng" [nzValue]=1></nz-option>
+                                                        <nz-option nzLabel="Chiều" [nzValue]=2></nz-option>
+                                                    </nz-select>
+                                                </td>
+                
+                                                <td>
+                                                    <i (click)="removeTime(i)" class="fa-solid fa-trash"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </nz-table>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
                     </div>
                 </div>
             </div>

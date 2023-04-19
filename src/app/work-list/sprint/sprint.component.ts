@@ -31,7 +31,7 @@ export class SprintComponent implements OnInit {
     dayOff: new Date(),
     dayShift: 0,
   }
-  isCollapseTime: boolean = false;
+  isCollapseTime: boolean = true;
   isCollapseTarget: boolean = true;
   isCollapseList: boolean = true;
   listSprintTarget: any[] = [];

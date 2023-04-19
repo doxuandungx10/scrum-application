@@ -145,6 +145,14 @@ const routes: Routes = [
   {
     path: 'general-info',
     component: GeneralAdminComponent,
+    children: [
+      { path: 'app-profile', component: ProfileComponent },
+      { path: 'post-details', component: PostDetailsComponent },
+      { path: 'email-compose', component: ComposeComponent },
+      { path: 'email-inbox', component: InboxComponent },
+      { path: 'email-read', component: ReadComponent },
+      { path: 'app-calender', component: CalenderComponent },
+    ],
     canActivate: [AuthGuardService],
   },
   {
