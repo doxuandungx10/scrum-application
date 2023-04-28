@@ -29,14 +29,14 @@
                             </div>
                         </div> -->
 
-                        <ngb-accordion>
-                            <ngb-panel cardClass="custom-header-accordion">
+                        <ngb-accordion activeIds="config-panel-one">
+                            <ngb-panel cardClass="custom-header-accordion" collapsed="true" id="config-panel-one">
                                 <ng-template ngbPanelHeader let-opened="opened">
                                     <div class="d-flex align-items-center justify-content-between w-100">
                                         <h5 class="m-0">Sprint Target</h5>
                                         <button ngbPanelToggle class="btn btn-link p-0">
-                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseTarget" nz-icon nzType="right" nzTheme="outline" (click)="collapseTarget()"></i>
-                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseTarget" nz-icon nzType="down" nzTheme="outline" (click)="collapseTarget()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseTarget" nz-icon nzType="right" nzTheme="outline" (click)="collapseTarget()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseTarget" nz-icon nzType="down" nzTheme="outline" (click)="collapseTarget()"></i>
                                         </button>
                                     </div>
                                 </ng-template>
@@ -51,8 +51,8 @@
                         </ngb-accordion>
                     </div>
                     <div class="mgb-20">
-                        <ngb-accordion>
-                            <ngb-panel cardClass="custom-header-accordion">
+                        <ngb-accordion activeIds="config-panel-one">
+                            <ngb-panel cardClass="custom-header-accordion" id="config-panel-one">
                                 <ng-template ngbPanelHeader let-opened="opened">
                                     <div class="d-flex align-items-center justify-content-between w-100">
                                         <div style="width: 500px; display: flex;">
@@ -75,8 +75,8 @@
                                             </div>
                                         </div>
                                         <button ngbPanelToggle class="btn btn-link p-0">
-                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseList" nz-icon nzType="right" nzTheme="outline" (click)="collapseList()"></i>
-                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseList" nz-icon nzType="down" nzTheme="outline" (click)="collapseList()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="!isCollapseList" nz-icon nzType="right" nzTheme="outline" (click)="collapseList()"></i>
+                                            <i class="mgt-5 mgr-10" *ngIf="isCollapseList" nz-icon nzType="down" nzTheme="outline" (click)="collapseList()"></i>
                                         </button>
                                     </div>
                                 </ng-template>
@@ -113,14 +113,14 @@
                         </ngb-accordion>
                     </div>
                     <div class="mgb-20">
-                        <ngb-accordion>
-                            <ngb-panel cardClass="custom-header-accordion">
+                        <ngb-accordion activeIds="config-panel-one">
+                            <ngb-panel cardClass="custom-header-accordion" id="config-panel-one">
                                 <ng-template ngbPanelHeader let-opened="opened">
                                     <div class="d-flex align-items-center justify-content-between w-100">
                                         <h5 class="m-0">Time Working Off</h5>
                                         <button ngbPanelToggle class="btn btn-link p-0">
-                                             <i class="mgt-5 mgr-10" *ngIf="isCollapseTime" nz-icon nzType="right" nzTheme="outline" (click)="collapseTime()"></i>
-                                             <i class="mgt-5 mgr-10" *ngIf="!isCollapseTime" nz-icon nzType="down" nzTheme="outline" (click)="collapseTime()"></i>
+                                             <i class="mgt-5 mgr-10" *ngIf="!isCollapseTime" nz-icon nzType="right" nzTheme="outline" (click)="collapseTime()"></i>
+                                             <i class="mgt-5 mgr-10" *ngIf="isCollapseTime" nz-icon nzType="down" nzTheme="outline" (click)="collapseTime()"></i>
 
                                         </button>
                                     </div>

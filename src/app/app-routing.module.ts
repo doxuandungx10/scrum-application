@@ -137,6 +137,7 @@ import { ProjectDetailComponent } from './work-list/project-detail/project-detai
 import { OverviewComponent } from './work-list/overview/overview.component';
 import { BacklogComponent } from './work-list/backlog/backlog.component';
 import { SprintComponent } from './work-list/sprint/sprint.component';
+import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 
 
 
@@ -163,6 +164,7 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent },
       { path: 'backlog', component: BacklogComponent },
       { path: 'sprint', component: SprintComponent },
+      { path: 'sprint-detail', component: SprintDetailComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },

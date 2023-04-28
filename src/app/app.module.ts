@@ -711,6 +711,7 @@ import { ShareModule } from './share/share.module';
 import { BacklogComponent } from './work-list/backlog/backlog.component';
 import { SprintComponent } from './work-list/sprint/sprint.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 
 
 
@@ -1346,7 +1347,8 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
     ProjectDetailComponent,
     OverviewComponent,
     BacklogComponent,
-    SprintComponent
+    SprintComponent,
+    SprintDetailComponent
   ],
   imports: [
     CommonModule,

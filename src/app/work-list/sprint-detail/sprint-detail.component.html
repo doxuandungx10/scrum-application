@@ -1,0 +1,147 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="">
+            <div>
+                <div style="width: 200px; margin-bottom: 5px;">
+                    <nz-select [(ngModel)]="selectedSprintId" (ngModelChange)="selectedSprint($event)">
+                        <nz-option *ngFor="let item of listSprint" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div>
+                <table>
+
+                    <body>
+                        <tr>
+                            <td>
+                                <div class="box">User</div>
+                                <div class="box">TotalTime</div>
+                                <div class="box">EstimatedTime</div>
+                            </td>
+                            <td *ngFor="let data of listTimeUser">
+                                <div class="box">{{data.fullName}}</div>
+                                <div class="box">{{data.totalTime}}</div>
+                                <div class="box">{{data.totalEstimatedTime}}</div>
+                            </td>
+                        </tr>
+                    </body>
+                </table>
+            </div>
+            <div>
+                <nz-table #tableSprint [nzData]="listSprintBacklog" nzOuterBordered>
+                    <thead>
+                        <tr>
+                            <th>Hạng mục</th>
+                            <th>Công việc của Sprint</th>
+                            <th>Người thực hiện</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Estimated Time</th>
+                            <th *ngFor="let item of workingDayOfSprint">{{item}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableSprint.data; index as i">
+                            <td>{{data.name}}</td>
+                            <td>
+                                <div *ngFor="let item of data.listTasks">
+                                    {{item.name}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let item of data.listTasks">
+                                    {{item.fullName}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let item of data.listTasks">
+                                    {{item.priority}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let item of data.listTasks">
+                                    {{convertStatusText(item.status)}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let item of data.listTasks">
+                                    {{item.estimatedTime}}
+                                </div>
+                            </td>
+                            <ng-container>
+                                <td *ngFor="let time of workingDayOfSprint; index as k">
+                                    <div *ngIf="data.listTasks.length>0">
+                                        <div *ngFor="let item of data.listTasks">
+                                            <div *ngIf="item.listTaskDetail.length>0">
+                                                {{item.listTaskDetail[k].remainTime}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div *ngFor="let item of data.listTasks[i].listTaskDetail">{{item[k].remainTime}}</div> -->
+                                </td>
+                            </ng-container>
+                            <td>
+                                <i (click)="openModalAddTask(data)" nz-icon nzType="edit" nzTheme="outline"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<nz-modal [(nzVisible)]="isVisibleAddTask" nzWidth="950px" nzTitle="Thêm Task" (nzOnCancel)="handleCancelAdd()" (nzOnOk)="addTask()">
+    <div>
+        <div class="title">
+            <span>Backlog: {{selectedSprintBacklog.name}}</span>
+            <span style="cursor: pointer; margin-left: 20px ;">
+                <i (click)="addBoxTask()" nz-icon nzType="plus" nzTheme="outline"></i>
+            </span>
+        </div>
+        <nz-table #taskTable [nzData]="listTask" nzOuterBordered [nzScroll]="{x: '900px'}">
+            <thead>
+                <tr>
+                    <th style="width: 200px;">Tên</th>
+                    <th style="width: 250px;">Người thực hiện</th>
+                    <th style="width: 150px;">Status</th>
+                    <th style="width: 200px;">Time Estimated</th>
+                    <th style="width: 120px;" *ngFor="let item of workingDayOfSprint">{{item}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+                <tr *ngFor="let data of listTask; index as i">
+                    <td>
+                        <input nz-input [(ngModel)]="data.name" type="text">
+                    </td>
+                    <td>
+                        <nz-select [(ngModel)]="data.userId">
+                            <nz-option *ngFor="let item of listUser" [nzValue]="item.userId" [nzLabel]="item.fullName">
+                            </nz-option>
+                        </nz-select>
+                    </td>
+                    <td>
+                        <nz-select [(ngModel)]="data.status">
+                            <nz-option [nzValue]="0" nzLabel="To Do"></nz-option>
+                            <nz-option [nzValue]="1" nzLabel="Doing"></nz-option>
+                            <nz-option [nzValue]="2" nzLabel="Done"></nz-option>
+                        </nz-select>
+                    </td>
+                    <td>
+                        <input nz-input [(ngModel)]="data.estimatedTime" type="number">
+                    </td>
+                    <td *ngFor="let time of workingDayOfSprint; index as k">
+                        <div *ngIf="data.listTaskDetail.length>0">
+                            <input type="number" nz-input [(ngModel)]="data.listTaskDetail[k].remainTime">
+                        </div>
+                        <div *ngIf="data.listTaskDetail.length==0">
+                            <input type="number" nz-input>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-modal>

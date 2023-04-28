@@ -1,0 +1,15 @@
+.title {
+    margin-bottom: 10px;
+}
+
+.box {
+    padding: 5px;
+    border-bottom: 1px solid #dedede;
+    &:last-child {
+        border-bottom: 0px;
+    }
+}
+
+table {
+    margin-bottom: 10px;
+}

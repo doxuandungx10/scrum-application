@@ -85,6 +85,7 @@ export class NavigationComponent implements OnInit {
   ];
 
   bootstrapArray = [
+    'sprint-detail',
     'ui-accordion',
     'ui-alert',
     'ui-badge',
