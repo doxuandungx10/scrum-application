@@ -1,0 +1,86 @@
+.board-item {
+    min-height: 50px;
+    border: 1px solid;
+}
+
+.item-task {
+    height: 30px;
+}
+
+.item-board {
+    max-height: 600px;
+    min-height: 150px;
+    border-radius: 4px;
+    background: #ebecf0;
+    padding: 15px;
+}
+
+.task-box {
+    padding: 10px;
+    //border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.board-header {
+    display: flex;
+    //padding: 0px 0px;
+    margin-bottom: 15px;
+}
+
+.mgr-20 {
+    margin-right: 20px;
+}
+
+.mgr-10 {
+    margin-right: 10px;
+}
+
+.todo-task {
+    background: #c3c3c3; //#ffc0cb75
+}
+
+.doing-task {
+    background: #006899; //lightblue
+}
+
+.done-task {
+    background: #008F68; //#90ee9040
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+
+.over-flt {
+    overflow: hidden;
+}
+
+.task-name {
+    font-weight: 500;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer
+    }
+}
+
+.bg-todo {
+    background: #ffc0cb75
+}
+
+.bg-doing {
+    background: lightblue
+}
+
+.bg-done {
+    background: #23a25e7d
+}
+
+.bd-r {
+    border-right: 1px solid #c3c3c3;
+}

@@ -138,6 +138,7 @@ import { OverviewComponent } from './work-list/overview/overview.component';
 import { BacklogComponent } from './work-list/backlog/backlog.component';
 import { SprintComponent } from './work-list/sprint/sprint.component';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
+import { BoardComponent } from './work-list/board/board.component';
 
 
 
@@ -165,6 +166,7 @@ const routes: Routes = [
       { path: 'backlog', component: BacklogComponent },
       { path: 'sprint', component: SprintComponent },
       { path: 'sprint-detail', component: SprintDetailComponent },
+      { path: 'board', component: BoardComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },
@@ -279,7 +281,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   // { path: '', redirectTo: 'admin/index', pathMatch: 'full'},
-
+  { path: 'app-profile', component: ProfileComponent },
   { path: 'page-register', component: RegisterComponent },
   { path: 'page-login', component: LoginComponent },
   { path: 'page-lock-screen', component: LockScreenComponent },

@@ -47,7 +47,6 @@ export class NavigationComponent implements OnInit {
 
   apsArray = [
     'backlog',
-    'app-profile',
     'post-details',
     'email-compose',
     'email-inbox',
@@ -113,6 +112,7 @@ export class NavigationComponent implements OnInit {
   ];
 
   materialArray = [
+    'board',
     'mat-autocomplete',
     'mat-badge',
     'mat-bottom-sheet',
@@ -149,6 +149,8 @@ export class NavigationComponent implements OnInit {
     'mat-tree',
     'mat-toolbar',
   ];
+
+  pages = ['app-profile']
 
   pluginsArray = ['uc-nestable', 'uc-lightgallery'];
 

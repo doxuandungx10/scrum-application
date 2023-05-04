@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li [ngClass]="{'mm-active': materialArray.indexOf(currentHref) > -1}">
-                <a [routerLink]="['mat-autocomplete']" class="{{(currentHref == 'mat-autocomplete') ? 'mm-active' : ''}}" href="javascript:void()" aria-expanded="false">
+                <a [routerLink]="['board']" class="{{(currentHref == 'mat-autocomplete') ? 'mm-active' : ''}}" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-layer-1"></i>
                     <span class="nav-text">Board</span>
                 </a>
@@ -58,15 +58,16 @@
                     <span class="nav-text">Forms</span>
                 </a>
             </li> -->
-            <li>
+            <li [ngClass]="{'mm-active': pages.indexOf(currentHref) > -1}">
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-049-copy"></i>
                     <span class="nav-text">Pages</span>
                 </a>
                 <ul aria-expanded="false">
+                    <li><a [routerLink]="['app-profile']" class="{{(currentHref == 'app-profile') ? 'mm-active' : ''}}">Profile</a></li>
                     <li><a [routerLink]="['/page-register']">Register</a></li>
                     <li><a [routerLink]="['/page-login']">Login</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                    <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
                         <ul aria-expanded="false">
                             <li><a [routerLink]="['/page-error-400']">Error 400</a></li>
                             <li><a [routerLink]="['/page-error-403']">Error 403</a></li>
@@ -75,7 +76,7 @@
                             <li><a [routerLink]="['/page-error-503']">Error 503</a></li>
                         </ul>
                     </li>
-                    <li><a [routerLink]="['/page-lock-screen']">Lock Screen</a></li>
+                    <li><a [routerLink]="['/page-lock-screen']">Lock Screen</a></li> -->
                 </ul>
             </li>
         </ul>
