@@ -7,12 +7,19 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <div class="text-center mb-3">
-                                    <a [routerLink]="['/admin/index']"><img src="assets/images/logo-full.png" alt=""></a>
+                                    <a [routerLink]="['/general-info']" class="brand-logo">
+                                        <svg class="logo-abbr" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect class="svg-logo-rect" width="50" height="50" rx="20" fill="#EB8153"/>
+                                            <path class="svg-logo-path"  d="M17.5158 25.8619L19.8088 25.2475L14.8746 11.1774C14.5189 9.84988 15.8701 9.0998 16.8205 9.75055L33.0924 22.2055C33.7045 22.5589 33.8512 24.0717 32.6444 24.3951L30.3514 25.0095L35.2856 39.0796C35.6973 40.1334 34.4431 41.2455 33.3397 40.5064L17.0678 28.0515C16.2057 27.2477 16.5504 26.1205 17.5158 25.8619ZM18.685 14.2955L22.2224 24.6007L29.4633 22.6605L18.685 14.2955ZM31.4751 35.9615L27.8171 25.6886L20.5762 27.6288L31.4751 35.9615Z" fill="white"/>
+                                        </svg>
+                                        <img class="brand-title" style="margin-left: 9px;" width="80" height="28" src="../../../assets/images/scrum-logo3.png" alt="">        
+                                    </a>
+                                    <!-- <a [routerLink]="['/admin/index']"><img src="assets/images/logo-full.png" alt=""></a> -->
                                 </div>
-                                <h4 class="text-center mb-4">Sign in your account</h4>
+                                <h4 class="text-center mb-4">Đăng nhập tài khoản của bạn</h4>
                                 <form [formGroup]="loginForm" action="['/admin/index']">
                                     <div class="form-group">
-                                        <label class="mb-1"><strong>Username</strong></label>
+                                        <label class="mb-1"><strong>Tên đăng nhập</strong></label>
                                         <input type="email" class="form-control" formControlName="username">
                                     </div>
                                     <div class="form-group">
@@ -23,19 +30,19 @@
                                         <div class="form-group">
                                            <div class="custom-control custom-checkbox ml-1">
                                                 <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
-                                                <label class="custom-control-label" for="basic_checkbox_1">Remember my preference</label>
+                                                <label class="custom-control-label" for="basic_checkbox_1">Ghi nhớ</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <a [routerLink]="['/page-forgot-password']">Forgot Password?</a>
+                                            <a [routerLink]="['/page-forgot-password']">Quên mật khẩu?</a>
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-block" (click)="login()">Sign Me In</button>
+                                        <button type="submit" class="btn btn-primary btn-block" (click)="login()">Đăng nhập</button>
                                     </div>
                                 </form>
                                 <div class="new-account mt-3">
-                                    <p>Don't have an account? <a class="text-primary" [routerLink]="['/page-register']">Sign up</a></p>
+                                    <p>Bạn chưa có tài khoản? Đăng kí <a class="text-primary" [routerLink]="['/page-register']">tại đây</a></p>
                                 </div>
                             </div>
                         </div>
