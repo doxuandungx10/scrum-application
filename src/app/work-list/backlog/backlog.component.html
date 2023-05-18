@@ -1,12 +1,35 @@
 <div class="content-body">
     <div class="container-fluid">
-        <div>
-            <button type="button" class="btn light btn-primary" (click)="openModalAddBacklog()">Thêm mới</button>
+        <div style="display: flex;">
+            <button type="button" class="btn tp-btn-light btn-primary btn-sm" (click)="openModalAddBacklog()">
+                <i class="fa-solid fa-plus"></i> Thêm mới</button>
+
+            <button type="button" class="btn tp-btn-light btn-primary btn-sm">
+                <i title="Convert to SprintBacklog" class="fa-solid fa-right-left"></i>
+                <a nz-dropdown [nzDropdownMenu]="menu"> Convert to {{selectedSprint.name}}</a>
+            </button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="selectSprint(item)" *ngFor="let item of listSprint">{{item.name}}</li>
+                </ul>
+            </nz-dropdown-menu>
+            <!-- <i *ngIf="selectedSprint.id != 0" (click)="openConvertModal()" nz-icon nzType="arrow-right" nzTheme="outline"></i> -->
+            <div *ngIf="selectedSprint.id != 0" class="btn-action">
+                <i (click)="undoSelected()" class="fa-sharp fa-solid fa-rotate-left"></i>
+            </div>
+            <div style="padding-top: 0.5rem" (click)="openConvertModal()" class="btn-action" *ngIf="listConvert.length != 0">
+                <span>{{listConvert.length}} mục được chọn</span>
+            </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <!-- <table class="table table-striped"> -->
+            <nz-table class="table table-striped" #basicTable [nzData]="listBacklog" nzShowSizeChanger (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" nzOuterBordered>
             <thead>
             <tr>
+                <th *ngIf="selectedSprint.id != 0">
+                    <!-- <i (click)="undoSelected()" nz-icon nzType="undo" nzTheme="outline"></i> -->
+                    <label nz-checkbox [(ngModel)]="allCheckedCurrentPage" (ngModelChange)="onAllChecked($event)"></label>
+                </th>
                 <th scope="col">#</th>
                 <th scope="col">Hạng mục</th>
                 <th scope="col">Chi tiết</th>
@@ -18,6 +41,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let data of listBacklog; index as i">
+                <td *ngIf="selectedSprint.id != 0">
+                    <label nz-checkbox [(ngModel)]="data.checked" [nzDisabled]="(data.percentageRemain == 0)? true: false" (ngModelChange)="changeChecked($event, data)"></label>
+                </td>
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{data.name}}</td>
                 <td>{{data.description}}</td>
@@ -29,7 +55,8 @@
                 </td>
             </tr>
             </tbody>
-            </table>
+            <!-- </table> -->
+            </nz-table>
         </div>
     </div>
 </div>
@@ -88,8 +115,53 @@
         </div>
     </div>
     <div *nzModalFooter>
-        <button class="btn btn-outline-dark mgr10" type="button" (click)="handleCancel()">Hủy</button>
-        <button *ngIf="isAdd" type="button" class="btn light btn-primary mgr10" (click)="addBacklog()">Thêm</button>
-        <button *ngIf="!isAdd" type="button" class="btn light btn-primary mgr10" (click)="updateBacklog()">Sửa</button>
+        <button class="btn btn-outline-dark btn-sm mgr10" type="button" (click)="handleCancel()">Hủy</button>
+        <button *ngIf="isAdd" type="button" class="btn light btn-primary btn-sm mgr10" (click)="addBacklog()">Thêm</button>
+        <button *ngIf="!isAdd" type="button" class="btn light btn-primary btn-sm mgr10" (click)="updateBacklog()">Sửa</button>
+    </div>
+</nz-modal>
+
+<!--  -->
+<nz-modal nzWidth="900px" [(nzVisible)]="isVisibleModalConvert" nzTitle="Sprint Backlog Preview" (nzOnCancel)="handleCancelConvert()" nzOuterBordered>
+    <div *nzModalContent>
+        <nz-table *ngIf="isVisibleModalConvert" #convertTable [nzData]="listConvert">
+            <thead>
+                <tr>
+                    <th>Hạng mục</th>
+                    <th>Tên</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Phần trăm còn lại của Backlog</th>
+                    <!-- <th></th> --> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of convertTable.data">
+                    <td>{{data.backlogName}}</td>
+                    <td>
+                        <!-- {{data.name}} -->
+                        <input nz-input [(ngModel)]="data.name" type="text">
+                    </td>
+                    <td>{{convertStatusText(data.status)}}</td>
+                    <td>
+                        <!-- {{data.priority}} -->
+                        <input nz-input [(ngModel)]="data.priority">
+                    </td>
+                    <td>
+                        <!-- {{data.percentageRemain}} -->
+                        <input nz-input [(ngModel)]="data.percentageRemain" type="number">
+                    </td>
+                    <!-- <td>
+                        <i nz-icon nzType="edit" nzTheme="outline"></i>
+                        <i nz-icon nzType="undo" nzTheme="outline"></i>
+                        <i nz-icon nzType="save" nzTheme="outline"></i>
+                    </td> -->
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div *nzModalFooter>
+        <button class="btn btn-outline-dark btn-sm mgr10" (click)="handleCancelConvert()">Hủy</button>
+        <button class="btn light btn-primary btn-sm mgr10" (click)="convertSprintBacklog()">Convert</button>
     </div>
 </nz-modal>

@@ -8673,7 +8673,7 @@ a {
 .content-body .container {
   margin-top: 40px; }
 .content-body .container-fluid {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-right: 40px;
   padding-left: 40px; }
   @media only screen and (max-width: 1200px) {
@@ -33509,7 +33509,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .photo-content {
   position: relative; }
   .photo-content .cover-photo {
-    background: url(../images/profile/cover.jpg);
+    background: url(../images/profile/cover2.jpg);
     background-size: cover;
     background-position: center;
     min-height: 250px;
@@ -36553,7 +36553,7 @@ button {
   font-weight: 600; }
 
 .btn-sm, .btn-group-sm > .btn {
-  font-size: 0.813rem  !important;
+  font-size: 0.9rem  !important;
   padding: 0.625rem 1rem; }
 
 .btn-md {
@@ -44704,6 +44704,9 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
+::ng-deep .ant-table-content .table:not(.table-bordered) thead th {
+  border-top: none;
+}
 
 ::ng-deep .ant-modal-content {
     border-bottom-left-radius: 30px !important;

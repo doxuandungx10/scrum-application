@@ -4,7 +4,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">About project</h4>
+                        <h4 class="card-title">Mô tả chung</h4>
                     </div>
                     <div class="card-body mb-0">
                         <div class="content">{{project?.description}}</div>
@@ -15,7 +15,7 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Member</h4>
+                        <h4 class="card-title">Thành viên</h4>
                         <button type="button" class="btn light btn-primary" (click)="openModalAddUser()">Thêm mới</button>
                     </div>
                     <div class="card-body">
@@ -26,7 +26,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Tên</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Position</th>
+                                <th scope="col">Vị trí</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
     </div>
     
     <div *nzModalFooter>
-        <button type="button" class="btn btn-outline-dark mgr10" (click)="handleCancel()">Hủy</button>
-    	<button type="button" class="btn light btn-primary mgr10" (click)="addUser()">Save</button>
+        <button type="button" class="btn btn-outline-dark btn-sm mgr10" (click)="handleCancel()">Hủy</button>
+    	<button type="button" class="btn light btn-primary btn-sm mgr10" (click)="addUser()">Lưu</button>
     </div>
 </nz-modal>
