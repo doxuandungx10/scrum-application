@@ -6,6 +6,7 @@ import { ShareService } from 'src/app/services/share.service';
 import { SprintService } from 'src/app/services/sprint.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 export class BoardComponent implements OnInit {
   listSprint: any;
   listUser: any;
-  projectId: number = 8;
+  projectId: any;
 
   listTaskTodo: Task[] = [];
   listTaskTodoId: string[] = [];
@@ -48,10 +49,16 @@ export class BoardComponent implements OnInit {
     private shareService: ShareService,
     private sprintService: SprintService,
     private notification: NzNotificationService,
-    private userService: UserService
+    private userService: UserService,
+    private router: ActivatedRoute
   ) {}
 
   async ngOnInit() {
+    this.router.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+      console.log(this.projectId);
+      console.log(parameter);
+    });
     await this.getListSprint();
     await this.getListUser();
   }

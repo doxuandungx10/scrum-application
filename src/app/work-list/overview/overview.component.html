@@ -17,6 +17,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Thành viên</h4>
                         <button type="button" class="btn light btn-primary" (click)="openModalAddUser()">Thêm mới</button>
+                        <!-- <i class="fa-solid fa-ellipsis-vertical" (click)="openModalAddUser()"></i> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -71,9 +72,40 @@
 
 <nz-modal [(nzVisible)]="isVisibleAddUser" nzClassName="add-user" nzTitle="Thêm User" (nzOnCancel)="handleCancel()" (nzOnOk)="addUser()">
     <div *nzModalContent>
-        <nz-select style="width: 100%; height: 56px; border-radius: 10px" nzMode="multiple" nzPlaceHolder="Chọn user" [(ngModel)]="listSelectedUserId">
-            <nz-option *ngFor="let data of listAllUserSystem" [nzValue]="data.id" [nzLabel]="data.fullName"></nz-option>
-        </nz-select>
+        <div class="row">
+            <div class="col-lg-6">
+                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn user" [(ngModel)]="listSelectedUserId">
+                    <nz-option *ngFor="let data of listAllUserSystem" [nzValue]="data.id" [nzLabel]="data.fullName"></nz-option>
+                </nz-select>
+            </div>
+            <div class="col-lg-6">
+                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn vị trí">
+                    <nz-option *ngFor="let data of listPosition" [nzValue]="data.id" [nzLabel]="data.name"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Vị trí</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of listUser; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ user.fullName }}</td>
+                    <td>{{ user.position }}</td>
+                    <td>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div> -->
     </div>
     
     <div *nzModalFooter>

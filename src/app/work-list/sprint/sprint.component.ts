@@ -6,13 +6,14 @@ import { SprintBacklog } from 'src/app/share/class/sprintbacklog.class';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common';
 import { DayOff } from 'src/app/share/class/dayoff.class';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sprint',
   templateUrl: './sprint.component.html',
-  styleUrls: ['./sprint.component.scss']
+  styleUrls: ['./sprint.component.scss'],
 })
 export class SprintComponent implements OnInit {
-  projectId: number = 8;
+  projectId: any;
   @Input() listUser: any;
 
   listSprint: any;
@@ -30,7 +31,7 @@ export class SprintComponent implements OnInit {
     sprintId: 0,
     dayOff: new Date(),
     dayShift: 0,
-  }
+  };
   isCollapseTime: boolean = true;
   isCollapseTarget: boolean = true;
   isCollapseList: boolean = true;
@@ -41,7 +42,8 @@ export class SprintComponent implements OnInit {
     private sprintService: SprintService,
     private sprintbacklogService: SprintbacklogService,
     private fb: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: ActivatedRoute
   ) {
     this.sprintBacklogForm = this.fb.group({
       id: [null],
@@ -51,17 +53,17 @@ export class SprintComponent implements OnInit {
       status: 0,
       priority: [null, [Validators.required]],
       percentageRemain: [null, [Validators.required]],
-    })
+    });
     this.addSprintForm = this.fb.group({
       id: 0,
       projectId: 0,
       name: [null],
       timeStart: [null],
       timeEnd: [null],
-      timeOffStart:[null],
-      timeOffEnd:[null],
-      dayOffStart:[null],
-      dayOffEnd:[null],
+      timeOffStart: [null],
+      timeOffEnd: [null],
+      dayOffStart: [null],
+      dayOffEnd: [null],
       // workingDay: [null],
     });
     // this.dayOffForm = this.fb.group({
@@ -72,18 +74,23 @@ export class SprintComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.router.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+      console.log(this.projectId);
+      console.log(parameter);
+    });
     await this.getListSprint();
   }
 
   getListSprint() {
-    this.sprintService.getListSprint(this.projectId).subscribe(res => {
+    this.sprintService.getListSprint(this.projectId).subscribe((res) => {
       this.listSprint = res;
       this.sprintId = this.listSprint[0].id;
 
       this.getListTimeOff();
       this.getListSprintBacklog();
       //this.getListSprintTarget();
-    })
+    });
   }
 
   selectedSprint(sprintId: number) {
@@ -94,17 +101,17 @@ export class SprintComponent implements OnInit {
   }
 
   getListSprintBacklog() {
-    this.sprintbacklogService.getListSprintBacklog(this.sprintId).subscribe(res => {
-      this.listSprintBacklog = res.listTask;
-      console.log('listSprintBackloglept',this.listSprintBacklog);
-      this.listSprintTarget = this.listSprintBacklog.filter(e => e.isTarget === true);
-      console.log('listSprintBackloglept222',this.listSprintTarget);
-    })
+    this.sprintbacklogService
+      .getListSprintBacklog(this.sprintId)
+      .subscribe((res) => {
+        this.listSprintBacklog = res.listTask;
+        this.listSprintTarget = this.listSprintBacklog.filter(
+          (e) => e.isTarget === true
+        );
+      });
   }
 
-  goToSprint() {
-
-  }
+  goToSprint() {}
 
   showModalDetail(data: any) {
     this.isVisibleSprintBacklog = true;
@@ -116,9 +123,8 @@ export class SprintComponent implements OnInit {
       status: data.status,
       priority: data.priority,
       percentageRemain: data.percentageRemain,
-    })
-    console.log("data", data);
-
+    });
+    console.log('data', data);
   }
 
   handleCancelSprintBacklog() {
@@ -133,11 +139,13 @@ export class SprintComponent implements OnInit {
         name: form.name,
         percentageRemain: form.percentageRemain,
         priority: form.priority,
-      }
-      this.sprintbacklogService.updateSprintBacklog(payload).subscribe(res => {
-        this.isVisibleSprintBacklog = false;
-        this.getListSprintBacklog();
-      })
+      };
+      this.sprintbacklogService
+        .updateSprintBacklog(payload)
+        .subscribe((res) => {
+          this.isVisibleSprintBacklog = false;
+          this.getListSprintBacklog();
+        });
     }
   }
 
@@ -158,58 +166,53 @@ export class SprintComponent implements OnInit {
         name: form.name,
         //timeStart: this.datePipe.transform(form.timeStart, 'dd/MM/yyyy'),
         //timeEnd: this.datePipe.transform(form.timeEnd, 'dd/MM/yyyy'),//form.timeEnd,
-        timeStart:form.timeStart,
-        timeEnd:form.timeEnd,
+        timeStart: form.timeStart,
+        timeEnd: form.timeEnd,
         // workingDay: 10,
-        dayOffStart:this.addTimeToDayOffStart(form.dayOffStart, form.timeOffStart),
-        dayOffEnd:this.addTimeToDayOffEnd(form.dayOffEnd, form.timeOffEnd)
-      }
-      this.sprintService.addSprint(payload).subscribe(res => {
-        console.log("ok");
+        dayOffStart: this.addTimeToDayOffStart(
+          form.dayOffStart,
+          form.timeOffStart
+        ),
+        dayOffEnd: this.addTimeToDayOffEnd(form.dayOffEnd, form.timeOffEnd),
+      };
+      this.sprintService.addSprint(payload).subscribe((res) => {
+        console.log('ok');
         this.isVisibleAddSprint = false;
         this.getListSprint();
-      })
+      });
     }
   }
-addTimeToDayOffStart(dateOffStart:Date, timeOffStart:string)
-{
-  if(timeOffStart==="full")
-  {
-    return dateOffStart;
-  } 
-  else
-  {
-    dateOffStart.setDate(dateOffStart.getDate()-1);
-    let day = dateOffStart.getDate();
-    let month = dateOffStart.getMonth();
-    let year = dateOffStart.getFullYear();
-    return new Date(year, month, day, 12, 0);
+  addTimeToDayOffStart(dateOffStart: Date, timeOffStart: string) {
+    if (timeOffStart === 'full') {
+      return dateOffStart;
+    } else {
+      dateOffStart.setDate(dateOffStart.getDate() - 1);
+      let day = dateOffStart.getDate();
+      let month = dateOffStart.getMonth();
+      let year = dateOffStart.getFullYear();
+      return new Date(year, month, day, 12, 0);
+    }
   }
-}
 
-addTimeToDayOffEnd(dateOffEnd:Date, timeOffEnd:string)
-{
-  if(timeOffEnd==="full")
-  {
-    return dateOffEnd;
-  } 
-  else
-  {
-    dateOffEnd.setDate(dateOffEnd.getDate()-1);
-    let day = dateOffEnd.getDate();
-    let month = dateOffEnd.getMonth();
-    let year = dateOffEnd.getFullYear();
-    return new Date(year, month, day, 12, 0);
+  addTimeToDayOffEnd(dateOffEnd: Date, timeOffEnd: string) {
+    if (timeOffEnd === 'full') {
+      return dateOffEnd;
+    } else {
+      dateOffEnd.setDate(dateOffEnd.getDate() - 1);
+      let day = dateOffEnd.getDate();
+      let month = dateOffEnd.getMonth();
+      let year = dateOffEnd.getFullYear();
+      return new Date(year, month, day, 12, 0);
+    }
   }
-}
 
   addDayOff() {
     var emptyDayOff: DayOff = {
       userId: 0,
       sprintId: this.sprintId,
-      dayOff:new Date() ,
+      dayOff: new Date(),
       dayShift: 0,
-    }
+    };
     this.listDayOff.push(emptyDayOff);
   }
 
@@ -222,19 +225,19 @@ addTimeToDayOffEnd(dateOffEnd:Date, timeOffEnd:string)
   }
 
   updateTime() {
-    this.listDayOff = this.listDayOff.filter(en => en.userId != 0);
+    this.listDayOff = this.listDayOff.filter((en) => en.userId != 0);
     if (this.listDayOff.length > 0) {
-      this.sprintService.updateTimeOff(this.listDayOff).subscribe(res => {
+      this.sprintService.updateTimeOff(this.listDayOff).subscribe((res) => {
         console.log(res);
-      })
+      });
     }
   }
 
   getListTimeOff() {
-    this.sprintService.getListTimeOff(this.sprintId).subscribe(res => {
+    this.sprintService.getListTimeOff(this.sprintId).subscribe((res) => {
       this.listDayOff = res.listTime;
       if (this.listDayOff.length == 0) this.addDayOff();
-    })
+    });
   }
 
   collapseTarget() {
@@ -247,25 +250,28 @@ addTimeToDayOffEnd(dateOffEnd:Date, timeOffEnd:string)
 
   insertSprintTarget(item: any) {
     let isTarget = !item.isTarget;
-    console.log("item", item);
-    this.listSprintBacklog = this.listSprintBacklog.map(e => (e.id === item.id ? { ...e, isTarget: isTarget } : e));
+    console.log('item', item);
+    this.listSprintBacklog = this.listSprintBacklog.map((e) =>
+      e.id === item.id ? { ...e, isTarget: isTarget } : e
+    );
     if (isTarget) {
       let payload = {
         sprintId: item.sprintId,
         sprintBacklogId: item.id,
         name: item.name,
       };
-      this.sprintService.addSprintTarget(payload).subscribe(res => {
+      this.sprintService.addSprintTarget(payload).subscribe((res) => {
+        //
+      });
+    } else {
+      let id = item.id;
+      this.sprintService.removeSprintTarget(id).subscribe((res) => {
         //
       });
     }
-    else {
-      let id = item.id;
-      this.sprintService.removeSprintTarget(id).subscribe(res => {
-        //
-      }); 
-    }
-    this.listSprintTarget = this.listSprintBacklog.filter(e => e.isTarget === true);
+    this.listSprintTarget = this.listSprintBacklog.filter(
+      (e) => e.isTarget === true
+    );
   }
 
   // getListSprintTarget(){
@@ -273,6 +279,6 @@ addTimeToDayOffEnd(dateOffEnd:Date, timeOffEnd:string)
   //  this.sprintService.getListSprintTarget(this.sprintId).subscribe(res=>{
   //    this.listSprintTarget = res;
   //    console.log('initial listSprintTarget', res)
-  //  }) 
+  //  })
   // }
 }

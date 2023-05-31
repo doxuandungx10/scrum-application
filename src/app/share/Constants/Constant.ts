@@ -27,14 +27,15 @@ export class Constant {
   public static readonly UPDATE = 'Sửa';
 }
 
-export class UrlConstant{
-    public static readonly USER ="/api/User";
-    public static readonly LOGIN ="/api/Login";
-    public static readonly PROJECT ="/api/Project";
-    public static readonly ISSUE ="/api/Issue";
-    public static readonly BACKLOG ="/api/Backlog";
-    public static readonly SPRINT_BACKLOG ="/api/SprintBacklog";
-    public static readonly SPRINT ="/api/Sprint";
-    public static readonly TASK ="/api/TaskSprint";
-    public static readonly UPLOAD ="/api/Upload";
+export class UrlConstant {
+  public static readonly USER = '/api/User';
+  public static readonly LOGIN = '/api/Login';
+  public static readonly PROJECT = '/api/Project';
+  public static readonly POSITION = '/api/Position';
+  public static readonly ISSUE = '/api/Issue';
+  public static readonly BACKLOG = '/api/Backlog';
+  public static readonly SPRINT_BACKLOG = '/api/SprintBacklog';
+  public static readonly SPRINT = '/api/Sprint';
+  public static readonly TASK = '/api/TaskSprint';
+  public static readonly UPLOAD = '/api/Upload';
 }

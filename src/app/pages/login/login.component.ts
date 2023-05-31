@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Constant } from 'src/app/share/Constants/Constant';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {
     this.loginForm = this.fb.group({
       username: [null, [Validators.required]], //, [Validators.pattern("/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;")]],
@@ -49,6 +51,10 @@ export class LoginComponent implements OnInit {
       };
       this.authService.login(payload).subscribe((res) => {
         if (res.isValid) {
+          this.notificationService.showNotification(
+            Constant.SUCCESS,
+            'Đăng nhập thành công'
+          );
           console.log('login', res);
           localStorage.setItem(Constant.TOKEN, res.token);
           localStorage.setItem('user', res.user);
@@ -57,6 +63,10 @@ export class LoginComponent implements OnInit {
           this.authService.isloggedInSub.next(true);
         } else {
           //this.router.navigate(['login']);
+          this.notificationService.showNotification(
+            Constant.ERROR,
+            res.errorMessage
+          );
           this.errorMessage = res.errorMessage;
         }
       });

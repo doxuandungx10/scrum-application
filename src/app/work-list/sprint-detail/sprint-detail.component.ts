@@ -8,23 +8,24 @@ import { SprintService } from 'src/app/services/sprint.service';
 import { Task } from 'src/app/share/class/task.class';
 import { SprintBacklog } from 'src/app/share/class/sprintbacklog.class';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sprint-detail',
   templateUrl: './sprint-detail.component.html',
-  styleUrls: ['./sprint-detail.component.scss']
+  styleUrls: ['./sprint-detail.component.scss'],
 })
 export class SprintDetailComponent implements OnInit {
   listUser: any;
-  projectId: number = 8;
+  projectId: any;
 
   listSprint: any;
   selectedSprintId: number = 0;
   selectedSprintBacklog: SprintBacklog = {
     id: 0,
     backlogId: 0,
-    backlogName: "",
-    name: "",
+    backlogName: '',
+    name: '',
     status: 0,
     priority: 1,
     percentageRemain: 0,
@@ -40,19 +41,20 @@ export class SprintDetailComponent implements OnInit {
     id: 0,
     sprintBacklogId: 0,
     userId: 0,
-    fullName: "",
-    name: "",
+    fullName: '',
+    name: '',
     status: 0,
     priority: 0,
-    description: "",
-    note: "",
+    description: '',
+    note: '',
     estimatedTime: 0,
-    listTaskDetail: []
-  }
+    listTaskDetail: [],
+  };
   listTimeUser: any;
   workingDayOfSprint: any[] = [];
 
   constructor(
+    private router: ActivatedRoute,
     private sprintbacklogService: SprintbacklogService,
     private fb: FormBuilder,
     private shareService: ShareService,
@@ -70,28 +72,33 @@ export class SprintDetailComponent implements OnInit {
       description: [null],
       note: [null],
       estimatedTime: [null],
-    })
+    });
   }
 
   async ngOnInit() {
+    this.router.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+      console.log(this.projectId);
+      console.log(parameter);
+    });
     await this.getListSprint();
     await this.getListUser();
   }
 
   getListUser() {
-    this.userService.getListUserByProjectId(this.projectId).subscribe(res => {
+    this.userService.getListUserByProjectId(this.projectId).subscribe((res) => {
       this.listUser = res;
-      console.log("listUser", this.listUser);
-    })
+      console.log('listUser', this.listUser);
+    });
   }
 
   getListSprint() {
-    this.sprintService.getListSprint(this.projectId).subscribe(res => {
+    this.sprintService.getListSprint(this.projectId).subscribe((res) => {
       this.listSprint = res;
       this.selectedSprintId = this.listSprint[0].id;
       this.getListSprintBacklog();
       this.getTimeUser();
-    })
+    });
   }
 
   selectedSprint(id: number) {
@@ -101,21 +108,28 @@ export class SprintDetailComponent implements OnInit {
   }
 
   getListSprintBacklog() {
-    this.sprintbacklogService.getListSprintBacklog(this.selectedSprintId).subscribe(res => {
-      this.listSprintBacklog = res.listTask;
-      this.workingDayOfSprint = Array.from({ length: res.workingDay }, (x, i) => i+1);
-      console.log("workingDayOfSprint", this.workingDayOfSprint);
-    })
+    this.sprintbacklogService
+      .getListSprintBacklog(this.selectedSprintId)
+      .subscribe((res) => {
+        this.listSprintBacklog = res.listTask;
+        this.workingDayOfSprint = Array.from(
+          { length: res.workingDay },
+          (x, i) => i + 1
+        );
+        console.log('workingDayOfSprint', this.workingDayOfSprint);
+      });
   }
 
   addTask() {
-    console.log("listTask", this.listTask);
-    this.taskService.updateTask(this.selectedSprintBacklog.id, this.listTask).subscribe(res => {
-      this.isVisibleAddTask = false;
-      this.getListSprintBacklog();
-      this.getListUser();
-      this.getTimeUser();
-    })
+    console.log('listTask', this.listTask);
+    this.taskService
+      .updateTask(this.selectedSprintBacklog.id, this.listTask)
+      .subscribe((res) => {
+        this.isVisibleAddTask = false;
+        this.getListSprintBacklog();
+        this.getListUser();
+        this.getTimeUser();
+      });
   }
   convertStatusText(status: number): string {
     return this.shareService.convertStatusText(status);
@@ -123,13 +137,15 @@ export class SprintDetailComponent implements OnInit {
   openModalAddTask(data: any) {
     this.selectedSprintBacklog = data;
     this.listTask = data.listTasks;
-    console.log("data", data.listTasks);
+    console.log('data', data.listTasks);
 
     this.isVisibleAddTask = true;
-    if (this.listTask.length == 0) { this.addBoxTask(); }
+    if (this.listTask.length == 0) {
+      this.addBoxTask();
+    }
   }
   handleCancelAdd() {
-    console.log("listTask", this.listTask);
+    console.log('listTask', this.listTask);
     this.isVisibleAddTask = false;
     this.listTask = [];
   }
@@ -138,22 +154,24 @@ export class SprintDetailComponent implements OnInit {
       id: 0,
       sprintBacklogId: 0,
       userId: 0,
-      fullName: "",
-      name: "",
+      fullName: '',
+      name: '',
       status: 0,
       priority: 0,
-      description: "",
-      note: "",
+      description: '',
+      note: '',
       estimatedTime: 0,
-      listTaskDetail: []
-    }
+      listTaskDetail: [],
+    };
     this.listTask.push(emptyTask);
-  }//getTimeOfUserBySprintId
+  } //getTimeOfUserBySprintId
 
   getTimeUser() {
-    this.userService.getTimeOfUserBySprintId(this.selectedSprintId, this.projectId).subscribe(res => {
-      this.listTimeUser = res;
-      console.log("getTimeUser", res);
-    })
+    this.userService
+      .getTimeOfUserBySprintId(this.selectedSprintId, this.projectId)
+      .subscribe((res) => {
+        this.listTimeUser = res;
+        console.log('getTimeUser', res);
+      });
   }
 }

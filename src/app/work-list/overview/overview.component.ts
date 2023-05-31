@@ -11,6 +11,7 @@ import {
   map,
 } from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { PositionService } from 'src/app/services/position.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./overview.component.css'],
 })
 export class OverviewComponent implements OnInit {
-  projectId = 8;
+  projectId: any;
   enableEditProject: boolean = false;
   project: any;
   listUser: any[] = [];
@@ -27,6 +28,7 @@ export class OverviewComponent implements OnInit {
   initialProject: any;
   listSelectedUserId: any;
   isVisibleAddUser: boolean = false;
+  listPosition: any[] = [];
 
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
   focus$ = new Subject<string>();
@@ -35,6 +37,7 @@ export class OverviewComponent implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private userService: UserService,
+    private positionService: PositionService,
     private projectService: ProjectService,
     private modalService: NgbModal
   ) {
@@ -44,9 +47,15 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+      console.log(this.projectId);
+      console.log(parameter);
+    });
     this.getProjectInfo();
     this.getListUserByProjectId();
     this.getListUser();
+    this.getListPosition();
   }
 
   getListUserByProjectId() {
@@ -59,7 +68,12 @@ export class OverviewComponent implements OnInit {
   getListUser() {
     this.userService.getListUser().subscribe((res) => {
       this.listAllUserSystem = res;
-      console.log('listAllUserSystem', this.listAllUserSystem);
+    });
+  }
+
+  getListPosition() {
+    this.positionService.getListPosition().subscribe((res) => {
+      this.listPosition = res;
     });
   }
 
@@ -98,9 +112,10 @@ export class OverviewComponent implements OnInit {
   };
 
   addUser() {
+    const payload = 
     console.log('this.listSelectedUserId', this.listSelectedUserId);
     this.userService
-      .addMemberToProject(this.listSelectedUserId, this.projectId)
+      .addMemberToProject(payload)
       .subscribe((res) => {
         this.getListUserByProjectId();
       });

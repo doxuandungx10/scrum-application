@@ -18,7 +18,7 @@ import { Constant } from 'src/app/share/Constants/Constant';
   styleUrls: ['./backlog.component.scss'],
 })
 export class BacklogComponent implements OnInit {
-  projectId: number = 8;
+  projectId: any;
 
   isVisibleModalBacklog: boolean = false;
   listBacklog: Backlog[] = [];
@@ -71,6 +71,11 @@ export class BacklogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+      console.log(this.projectId);
+      console.log(parameter);
+    });
     this.getListBacklog();
     this.getListSprint();
     this.getListUser();

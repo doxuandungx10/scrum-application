@@ -62,8 +62,12 @@ export class UserService extends ConfigService {
     return this.post(UrlConstant.USER + '/SendEmailToChangePass', "", { email });
   }
 
-  addMemberToProject(listId: any, projectId: number): Observable<any> {
-    return this.post(UrlConstant.USER + '/AddMemberToProject', listId, { projectId });
+  // addMemberToProject(listId: any, projectId: number): Observable<any> {
+  //   return this.post(UrlConstant.USER + '/AddMemberToProject', listId, { projectId });
+  // }
+
+  addMemberToProject(payload: any): Observable<any> {
+    return this.post(UrlConstant.USER + '/AddMemberToProject', payload);
   }
 
   getTimeOfUserBySprintId(sprintId: number, projectId: number): Observable<any> {
