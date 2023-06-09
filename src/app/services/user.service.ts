@@ -77,4 +77,8 @@ export class UserService extends ConfigService {
   changeAvatar(payload: any): Observable<any>{
     return this.post(UrlConstant.USER + '/ChangeAvatar', payload);
   }
+
+  removeMemberFromProject(id: any): Observable<any> {
+    return this.delete(UrlConstant.USER + '/RemoveMember/' + id, null);
+  }
 }

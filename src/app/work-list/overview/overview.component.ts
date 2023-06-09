@@ -12,6 +12,9 @@ import {
 } from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { PositionService } from 'src/app/services/position.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
+import { Constant } from 'src/app/share/Constants/Constant';
 
 
 @Component({
@@ -26,9 +29,14 @@ export class OverviewComponent implements OnInit {
   listUser: any[] = [];
   listAllUserSystem: any[] = [];
   initialProject: any;
-  listSelectedUserId: any;
   isVisibleAddUser: boolean = false;
   listPosition: any[] = [];
+  formAdd = {
+    userId: 0,
+    positionId: 0,
+    projectId: 0,
+  };
+  isEditingDescription: boolean = false;
 
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
   focus$ = new Subject<string>();
@@ -39,7 +47,9 @@ export class OverviewComponent implements OnInit {
     private userService: UserService,
     private positionService: PositionService,
     private projectService: ProjectService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private modalAntService: NzModalService,
+    private notificationService: NotificationService
   ) {
     // this.router.parent.snapshot.paramMap((params) => {
     //   console.log(params.id);
@@ -112,13 +122,16 @@ export class OverviewComponent implements OnInit {
   };
 
   addUser() {
-    const payload = 
-    console.log('this.listSelectedUserId', this.listSelectedUserId);
-    this.userService
-      .addMemberToProject(payload)
-      .subscribe((res) => {
-        this.getListUserByProjectId();
-      });
+    this.formAdd.projectId = parseInt(this.projectId);
+    console.log('this.listSelectedUserId', this.formAdd);
+    this.userService.addMemberToProject(this.formAdd).subscribe((res) => {
+      this.notificationService.showNotification(
+        Constant.SUCCESS,
+        'Thêm thành viên thành công'
+      );
+      this.getListUserByProjectId();
+      this.isVisibleAddUser = false;
+    });
   }
 
   handleCancel() {
@@ -127,5 +140,43 @@ export class OverviewComponent implements OnInit {
 
   openModalAddUser() {
     this.isVisibleAddUser = true;
+  }
+
+  showConfirm(id: any): void {
+    this.modalAntService.confirm({
+      nzTitle: 'Confirm',
+      nzContent: 'Bạn có muốn xóa member hay không?',
+      nzOkText: 'Đồng ý',
+      nzCancelText: 'Bỏ qua',
+      nzOnOk: () => this.removeMember(id),
+    });
+  }
+
+  removeMember(id: any) {
+    this.userService.removeMemberFromProject(id).subscribe((res) => {
+      this.notificationService.showNotification(
+        Constant.SUCCESS,
+        'Xóa thành viên thành công'
+      );
+      this.getListUserByProjectId();
+    });
+  }
+
+  editDescription() {
+    this.isEditingDescription = true;
+  }
+
+  cancelEditDescription() {
+    this.isEditingDescription = false;
+  }
+
+  saveDescription() {
+    this.projectService.updateProject(this.project).subscribe(res=>{
+      this.isEditingDescription = false;
+      this.notificationService.showNotification(
+        Constant.SUCCESS,
+        Constant.MESSAGE_UPDATE_SUCCESS
+      );
+    })
   }
 }

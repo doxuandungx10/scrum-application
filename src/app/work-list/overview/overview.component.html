@@ -5,9 +5,15 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Mô tả chung</h4>
+                        <i class="fa-solid fa-ellipsis-vertical" (click)="editDescription()"></i>
                     </div>
                     <div class="card-body mb-0">
-                        <div class="content">{{project?.description}}</div>
+                        <div *ngIf="!isEditingDescription" class="content">{{project?.description}}</div>
+                        <textarea *ngIf="isEditingDescription" nz-input [(ngModel)]="project.description"></textarea>
+                    </div>
+                    <div *ngIf="isEditingDescription" class="card-footer" style="text-align: end;">
+                        <button type="button" class="btn btn-outline-dark btn-sm mgr10" (click)="cancelEditDescription()">Hủy</button>
+    	                <button type="button" class="btn light btn-primary btn-sm mgr10" (click)="saveDescription()">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -28,6 +34,7 @@
                                 <th scope="col">Tên</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Vị trí</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,6 +43,9 @@
                                 <td>{{ user.fullName }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.position }}</td>
+                                <td>
+                                    <i (click)="showConfirm(user.id)" class="fa-solid fa-trash"></i>
+                                </td>
                             </tr>
                             </tbody>
                             </table>
@@ -74,12 +84,12 @@
     <div *nzModalContent>
         <div class="row">
             <div class="col-lg-6">
-                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn user" [(ngModel)]="listSelectedUserId">
+                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn user" [(ngModel)]="formAdd.userId">
                     <nz-option *ngFor="let data of listAllUserSystem" [nzValue]="data.id" [nzLabel]="data.fullName"></nz-option>
                 </nz-select>
             </div>
             <div class="col-lg-6">
-                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn vị trí">
+                <nz-select style="width: 100%; border-radius: 10px" nzPlaceHolder="Chọn vị trí" [(ngModel)]="formAdd.positionId">
                     <nz-option *ngFor="let data of listPosition" [nzValue]="data.id" [nzLabel]="data.name"></nz-option>
                 </nz-select>
             </div>
