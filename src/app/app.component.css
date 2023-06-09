@@ -1,0 +1,35 @@
+::ng-deep nz-select-top-control.ant-select-selector {
+    height: 56px;
+    border-radius: 10px !important;
+    color: #7e7e7e;
+}
+
+::ng-deep .ant-table table{
+    color: #7e7e7e;
+}
+
+::ng-deep .ant-input {
+    border-radius: 10px !important;
+    color: #7e7e7e;
+}
+
+::ng-deep .ant-table-content .table:not(.table-bordered) thead th {
+    border-top: none;
+}
+
+::ng-deep .ant-modal-content {
+    border-radius: 20px !important;
+}
+
+::ng-deep .ant-modal-header {
+    border-radius: 20px !important;
+}
+
+::ng-deep textarea.ant-input {
+    height: 100%;
+}
+
+/* ::ng-deep .ant-modal-header {
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+} */
