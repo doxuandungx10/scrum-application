@@ -161,7 +161,7 @@ const routes: Routes = [
     path: 'general-info/:id',
     component: ProjectDetailComponent,
     children: [
-      { path: '', component: DashboardComponent },
+      { path: '', component: OverviewComponent },
       { path: 'overview', component: OverviewComponent },
       { path: 'backlog', component: BacklogComponent },
       { path: 'sprint', component: SprintComponent },

@@ -36,6 +36,7 @@ export class NavigationComponent implements OnInit {
   }
 
   dashboardArray = [
+    '',
     '/admin',
     'overview',
     'my-wallets',
