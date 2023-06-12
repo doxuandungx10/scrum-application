@@ -59,8 +59,6 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
-      console.log(this.projectId);
-      console.log(parameter);
     });
     this.getProjectInfo();
     this.getListUserByProjectId();

@@ -76,8 +76,6 @@ export class SprintComponent implements OnInit {
   async ngOnInit() {
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
-      console.log(this.projectId);
-      console.log(parameter);
     });
     await this.getListSprint();
   }
@@ -108,6 +106,8 @@ export class SprintComponent implements OnInit {
         this.listSprintTarget = this.listSprintBacklog.filter(
           (e) => e.isTarget === true
         );
+        console.log('listSprintBacklog', this.listSprintBacklog);
+        
       });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   defaultLightMode: boolean = false;
   @Output() newEvent = new EventEmitter<string>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +27,10 @@ export class HeaderComponent implements OnInit {
     console.log(event);
   }
   setTheme(value: string) {
-	  this.newEvent.emit(value);
+    this.newEvent.emit(value);
+  }
+  logout() {
+    console.log(location.origin);
+    this.router.navigateByUrl('/page-login');
   }
 }

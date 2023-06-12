@@ -73,8 +73,6 @@ export class BacklogComponent implements OnInit {
   ngOnInit(): void {
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
-      console.log(this.projectId);
-      console.log(parameter);
     });
     this.getListBacklog();
     this.getListSprint();
@@ -178,6 +176,8 @@ export class BacklogComponent implements OnInit {
       .subscribe((res) => {
         console.log('huong');
         this.isVisibleModalConvert = false;
+        this.getListBacklog();
+        this.undoSelected();
       });
   }
   getListSprint() {
