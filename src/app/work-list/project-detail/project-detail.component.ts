@@ -39,8 +39,6 @@ export class ProjectDetailComponent implements OnInit {
     // this.getListUser();
     this.router.params.subscribe((parameter) => {
       this.projectId = parameter.id;
-      console.log(this.projectId);
-      console.log(parameter);
     });
   }
 

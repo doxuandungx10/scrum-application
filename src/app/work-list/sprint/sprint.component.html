@@ -86,7 +86,7 @@
                                             <div class="list-item">
                                                 <h5>Priority 1</h5>
                                                 <div class="line-hover item-data status-{{item.status}}" *ngFor="let item of listSprintBacklog">
-                                                    <div>
+                                                    <div *ngIf="item.priority==1">
                                                         <div>
                                                             <span (click)="showModalDetail(item)">{{item.name}}&nbsp;</span>
                                                             <span *ngIf="item.totalTask>0">{{item.doneTask}}/{{item.totalTask}}</span>

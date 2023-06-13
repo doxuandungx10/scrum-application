@@ -17,7 +17,6 @@ export class AuthGuardService implements CanActivate {
         let login = false;
         this.authService.isUserLogin().subscribe(res=>{
             login = res;
-            console.log("res", res);
         })
         if (login) {
             return true;
