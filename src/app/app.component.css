@@ -1,3 +1,7 @@
+.table thead th {
+    color: #000 !important
+}
+
 ::ng-deep nz-select-top-control.ant-select-selector {
     height: 56px;
     border-radius: 10px !important;
@@ -28,6 +32,7 @@
 ::ng-deep textarea.ant-input {
     height: 100%;
 }
+
 
 /* ::ng-deep .ant-modal-header {
     border-top-left-radius: 30px !important;

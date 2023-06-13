@@ -44723,6 +44723,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   border-radius: 10px solid #fff;
 }
 
+.table thead th {
+  color: #000 !important
+}
+
 .mgr10 {
   margin-right: 10px;
 }
@@ -44738,4 +44742,12 @@ i {
 i:hover {
   cursor: pointer;
   color: #EB8153;
+}
+
+.button-danger {
+  color: #f36e6e;
+}
+
+.button-danger:hover {
+  color: #d30101;
 }
