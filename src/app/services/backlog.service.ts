@@ -6,20 +6,25 @@ import { Backlog } from '../share/class/backlog.class';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BacklogService extends ConfigService {
-  getListBacklogByProjectId(projectId: number): Observable<any>{
-    return this.get(UrlConstant.BACKLOG + '/GetListBacklog', {projectId});
+  getListBacklogByProjectId(projectId: number): Observable<any> {
+    return this.get(UrlConstant.BACKLOG + '/GetListBacklog', { projectId });
   }
-  addBacklog(payload: any): Observable<any>{
+  addBacklog(payload: any): Observable<any> {
     return this.post(UrlConstant.BACKLOG + '/AddBacklog', payload);
   }
-  updateBacklog(payload: any): Observable<any>{
+  updateBacklog(payload: any): Observable<any> {
     return this.put(UrlConstant.BACKLOG + '/UpdateBacklog', payload);
   }
-  convertBacklog(sprintId: number, payload: any): Observable<any>{
-    return this.post(UrlConstant.SPRINT_BACKLOG + '/ConvertBacklog', payload, {sprintId});
+  convertBacklog(sprintId: number, payload: any): Observable<any> {
+    return this.post(UrlConstant.SPRINT_BACKLOG + '/ConvertBacklog', payload, {
+      sprintId,
+    });
+  }
+  deleteBacklog(id: any): Observable<any> {
+    return this.delete(UrlConstant.BACKLOG + '/DeleteBacklog/' + id, null);
   }
 }
 

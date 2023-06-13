@@ -11,6 +11,7 @@ import { SprintBacklog } from 'src/app/share/class/sprintbacklog.class';
 import { UserService } from 'src/app/services/user.service';
 import { NotificationService } from 'src/app/services/share-service/notification.service';
 import { Constant } from 'src/app/share/Constants/Constant';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-backlog',
@@ -53,6 +54,7 @@ export class BacklogComponent implements OnInit {
     private shareService: ShareService,
     private userService: UserService,
     private notificationService: NotificationService,
+    private modalAntService: NzModalService
   ) {
     this.backlogForm = this.fb.group({
       id: [null],
@@ -139,7 +141,10 @@ export class BacklogComponent implements OnInit {
     //if (this.backlogForm.valid)
     {
       this.backlogService.addBacklog(payload).subscribe((res) => {
-        this.notificationService.showNotification(Constant.SUCCESS, Constant.MESSAGE_ADD_SUCCESS);
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          Constant.MESSAGE_ADD_SUCCESS
+        );
         this.isVisibleModalBacklog = false;
         this.getListBacklog();
       });
@@ -161,23 +166,35 @@ export class BacklogComponent implements OnInit {
       };
       console.log('huongntt payload', payload);
       this.backlogService.updateBacklog(payload).subscribe((res) => {
-        this.notificationService.showNotification(Constant.SUCCESS, Constant.MESSAGE_UPDATE_SUCCESS);
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          Constant.MESSAGE_UPDATE_SUCCESS
+        );
         this.isVisibleModalBacklog = false;
         this.getListBacklog();
       });
     }
   }
-  reInitialValue(data: any) {}
   convertSprintBacklog() {
     console.log('---------listConvert', this.listConvert);
     let listBacklog = this.listBacklogConvert;
     this.backlogService
       .convertBacklog(this.selectedSprint.id, this.listConvert)
       .subscribe((res) => {
-        console.log('huong');
-        this.isVisibleModalConvert = false;
-        this.getListBacklog();
-        this.undoSelected();
+        if (res.ret[0].code == 400) {
+          this.notificationService.showNotification(
+            Constant.ERROR,
+            res.ret[0].message
+          );
+        } else {
+          this.isVisibleModalConvert = false;
+          this.getListBacklog();
+          this.undoSelected();
+          this.notificationService.showNotification(
+            Constant.SUCCESS,
+            res.ret[0].message
+          );
+        }
       });
   }
   getListSprint() {
@@ -251,5 +268,32 @@ export class BacklogComponent implements OnInit {
   log(data: any) {
     console.log(this.listUser);
     console.log(data);
+  }
+
+  showConfirm(id: any): void {
+    this.modalAntService.confirm({
+      nzTitle: 'Confirm',
+      nzContent: 'Bạn có muốn xóa backlog này hay không?',
+      nzOkText: 'Đồng ý',
+      nzCancelText: 'Bỏ qua',
+      nzOnOk: () => this.deleteBacklog(id),
+    });
+  }
+
+  deleteBacklog(id: any) {
+    this.backlogService.deleteBacklog(id).subscribe((res) => {
+      if(!res.isValid) {
+        this.notificationService.showNotification(
+          Constant.ERROR,
+          res.errorMessage
+        );
+      } else {
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          res.message
+        );
+        this.getListBacklog();
+      }
+    });
   }
 }

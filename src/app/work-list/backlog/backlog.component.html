@@ -1,6 +1,6 @@
 <div class="content-body">
     <div class="container-fluid">
-        <div style="display: flex;">
+        <div style="display: flex; margin-bottom: 0.5rem;">
             <button type="button" class="btn tp-btn-light btn-primary btn-sm" (click)="openModalAddBacklog()">
                 <i class="fa-solid fa-plus"></i> Thêm mới</button>
 
@@ -51,7 +51,8 @@
                 <td>{{data.priority}}</td>
                 <td>{{data.statusText}}</td>
                 <td>
-                    <i class="fa-solid fa-pen-to-square fa-lg" (click)="openModalEdit(data)" title="Sửa backlog" ></i>
+                    <i class="fa-solid fa-pen-to-square fa-lg mgr10" (click)="openModalEdit(data)" title="Sửa backlog" ></i>
+                    <i class="fa-solid fa-trash fa-lg button-danger" (click)="showConfirm(data.id)"></i>
                 </td>
             </tr>
             </tbody>
@@ -145,7 +146,7 @@
                     <td>{{convertStatusText(data.status)}}</td>
                     <td>
                         <!-- {{data.priority}} -->
-                        <input nz-input [(ngModel)]="data.priority">
+                        <input [readonly]="true" nz-input [(ngModel)]="data.priority">
                     </td>
                     <td>
                         <!-- {{data.percentageRemain}} -->
