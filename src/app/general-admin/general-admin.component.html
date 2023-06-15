@@ -8,7 +8,7 @@
             <div class="col-sm-2 project-card" *ngFor="let proj of listProject" [routerLink]="['./', proj.projectId]">
                 <div class="card text-white bg-primary">
                     <div class="card-header">
-                        <h5 class="card-title text-white">{{proj.name}}</h5>
+                        <h5 class="card-title text-orange">{{proj.name}}</h5>
                     </div>
                     <div class="card-body mb-0">
                         <p class="card-text">{{proj.description}}</p>
