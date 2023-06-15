@@ -32,11 +32,11 @@ export class SprintService extends ConfigService {
   }
 
   addSprintTarget(payload: any): Observable<any>{
-    return this.post(UrlConstant.SPRINT_BACKLOG + '/AddSprintTarget', payload);
+    return this.put(UrlConstant.SPRINT_BACKLOG + '/AddSprintTarget', payload);
   }//RemoveSprintTarget
 
-  removeSprintTarget(id: any): Observable<any>{
-    return this.post(UrlConstant.SPRINT_BACKLOG + '/RemoveSprintTarget', "", {id});
+  removeSprintTarget(payload: any): Observable<any>{
+    return this.put(UrlConstant.SPRINT_BACKLOG + '/RemoveSprintTarget', payload);
   }
 
   getListSprintTarget(sprintId: any): Observable<any>{

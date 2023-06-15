@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common';
 import { DayOff } from 'src/app/share/class/dayoff.class';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
+import { Constant } from 'src/app/share/Constants/Constant';
 @Component({
   selector: 'app-sprint',
   templateUrl: './sprint.component.html',
@@ -43,7 +45,8 @@ export class SprintComponent implements OnInit {
     private sprintbacklogService: SprintbacklogService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private notificationService: NotificationService
   ) {
     this.sprintBacklogForm = this.fb.group({
       id: [null],
@@ -87,7 +90,7 @@ export class SprintComponent implements OnInit {
 
       this.getListTimeOff();
       this.getListSprintBacklog();
-      //this.getListSprintTarget();
+      // this.getListSprintTarget();
     });
   }
 
@@ -99,19 +102,14 @@ export class SprintComponent implements OnInit {
   }
 
   getListSprintBacklog() {
-    this.sprintbacklogService
-      .getListSprintBacklog(this.sprintId)
-      .subscribe((res) => {
+    this.sprintbacklogService.getListSprintBacklog(this.sprintId).subscribe((res) => {
         this.listSprintBacklog = res.listTask;
         this.listSprintTarget = this.listSprintBacklog.filter(
           (e) => e.isTarget === true
         );
         console.log('listSprintBacklog', this.listSprintBacklog);
-        
       });
   }
-
-  goToSprint() {}
 
   showModalDetail(data: any) {
     this.isVisibleSprintBacklog = true;
@@ -124,7 +122,6 @@ export class SprintComponent implements OnInit {
       priority: data.priority,
       percentageRemain: data.percentageRemain,
     });
-    console.log('data', data);
   }
 
   handleCancelSprintBacklog() {
@@ -145,6 +142,10 @@ export class SprintComponent implements OnInit {
         .subscribe((res) => {
           this.isVisibleSprintBacklog = false;
           this.getListSprintBacklog();
+          this.notificationService.showNotification(
+            Constant.SUCCESS,
+            'Cập nhật sprint backlog thành công'
+          );
         });
     }
   }
@@ -176,9 +177,12 @@ export class SprintComponent implements OnInit {
         dayOffEnd: this.addTimeToDayOffEnd(form.dayOffEnd, form.timeOffEnd),
       };
       this.sprintService.addSprint(payload).subscribe((res) => {
-        console.log('ok');
         this.isVisibleAddSprint = false;
         this.getListSprint();
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          'Thêm sprint backlog thành công'
+        );
       });
     }
   }
@@ -250,35 +254,23 @@ export class SprintComponent implements OnInit {
 
   insertSprintTarget(item: any) {
     let isTarget = !item.isTarget;
-    console.log('item', item);
-    this.listSprintBacklog = this.listSprintBacklog.map((e) =>
-      e.id === item.id ? { ...e, isTarget: isTarget } : e
-    );
     if (isTarget) {
-      let payload = {
-        sprintId: item.sprintId,
-        sprintBacklogId: item.id,
-        name: item.name,
-      };
-      this.sprintService.addSprintTarget(payload).subscribe((res) => {
-        //
+      this.sprintService.addSprintTarget(item).subscribe((res) => {
+        this.getListSprintBacklog();
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          "Thêm target thành công"
+        );
       });
     } else {
-      let id = item.id;
-      this.sprintService.removeSprintTarget(id).subscribe((res) => {
-        //
+      // let id = item.id;
+      this.sprintService.removeSprintTarget(item).subscribe((res) => {
+        this.getListSprintBacklog();
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          'Hủy target thành công'
+        );
       });
     }
-    this.listSprintTarget = this.listSprintBacklog.filter(
-      (e) => e.isTarget === true
-    );
   }
-
-  // getListSprintTarget(){
-  //   console.log("getListSprintTarget", )
-  //  this.sprintService.getListSprintTarget(this.sprintId).subscribe(res=>{
-  //    this.listSprintTarget = res;
-  //    console.log('initial listSprintTarget', res)
-  //  })
-  // }
 }

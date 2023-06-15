@@ -7,13 +7,13 @@
                         <h4 class="text-title">List Sprint</h4>
                     </div>
         
-                    <div [ngClass]="(sprintId==item.id)? 'active':''" (click)="selectedSprint(item.id)" *ngFor="let item of listSprint">
+                    <div style="margin-bottom: 8px;" [ngClass]="(sprintId==item.id)? 'active':''" (click)="selectedSprint(item.id)" *ngFor="let item of listSprint">
                         <div class="item-sprint">{{item.name}}</div>
-                        <div class="item-sprint italic-text">{{item.timeStart}}-{{item.timeEnd}}</div>
+                        <div class="item-sprint italic-text">{{item.dateStart | date: 'dd/MM/yyyy'}} - {{item.dateEnd | date: 'dd/MM/yyyy'}}</div>
                     </div>
                     <div class="add-sprint" (click)="openModalAddSprint()">
-                        <i class="fa-regular fa-plus"></i>
-                        <span>Thêm</span>
+                        <i class="fa-regular fa-plus"> </i>
+                        <span style="color: #00838f;"> Thêm</span>
                     </div>
                 </div>
                 <div class="sprint-detail">
@@ -92,8 +92,8 @@
                                                             <span *ngIf="item.totalTask>0">{{item.doneTask}}/{{item.totalTask}}</span>
                                                         </div>
                                                         <span class="is-target" (click)="insertSprintTarget(item)">
-                                                            <i class="not-target" *ngIf="!item.isTarget"class="fa-regular fa-star"></i>
-                                                            <i *ngIf="item.isTarget" nz-icon class="fa-regular fa-star" style="color: red;"></i>
+                                                            <i *ngIf="!item.isTarget" class="fa-regular fa-star not-target"></i>
+                                                            <i *ngIf="item.isTarget" class="fa-regular fa-star" style="color: red;"></i>
                                                         </span>
                                                     </div>
                                                 </div>
