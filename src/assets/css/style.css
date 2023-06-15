@@ -44736,7 +44736,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 i {
-  color: #00838f;
+  /* xanh cyan 9 */
+  color: #00838f; 
+  /* tím 4 */
+  color: #283593; 
 }
 
 i:hover {
@@ -44751,3 +44754,8 @@ i:hover {
 .button-danger:hover {
   color: #d30101;
 }
+
+.text-orange {
+  color: #ffe55f
+}
+
