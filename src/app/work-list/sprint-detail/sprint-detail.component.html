@@ -93,7 +93,7 @@
 </div>
 <!--  -->
 <nz-modal [(nzVisible)]="isVisibleAddTask" nzWidth="950px" nzTitle="Thêm Task" (nzOnCancel)="handleCancelAdd()" (nzOnOk)="addTask()">
-    <div>
+    <div *nzModalContent>
         <div class="title">
             <span>Backlog: {{selectedSprintBacklog.name}}</span>
             <span style="cursor: pointer; margin-left: 20px ;">
@@ -143,5 +143,9 @@
                 </tr>
             </tbody>
         </nz-table>
+    </div>
+    <div *nzModalFooter>
+        <button class="btn btn-outline-dark mgr10" type="button" (click)="handleCancelAdd()">Hủy</button>
+        <button type="button" class="btn light btn-primary mgr10" (click)="addTask()">Thêm</button>
     </div>
 </nz-modal>

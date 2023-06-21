@@ -33,6 +33,18 @@
     height: 100%;
 }
 
+::ng-deep nz-select {
+    width: 100%;
+}
+
+::ng-deep .ant-picker {
+    border-radius: 10px !important;
+}
+
+::ng-deep .ant-picker-input>input {
+    color: #7e7e7e;
+}
+
 
 /* ::ng-deep .ant-modal-header {
     border-top-left-radius: 30px !important;

@@ -9,6 +9,7 @@ import { DayOff } from 'src/app/share/class/dayoff.class';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/services/share-service/notification.service';
 import { Constant } from 'src/app/share/Constants/Constant';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-sprint',
   templateUrl: './sprint.component.html',
@@ -16,10 +17,9 @@ import { Constant } from 'src/app/share/Constants/Constant';
 })
 export class SprintComponent implements OnInit {
   projectId: any;
-  @Input() listUser: any;
 
   listSprint: any;
-  //listUser: any;
+  listUser: any;
   listSprintBacklog: SprintBacklog[] = [];
   sprintBacklogForm: FormGroup;
   addSprintForm: FormGroup;
@@ -46,7 +46,8 @@ export class SprintComponent implements OnInit {
     private fb: FormBuilder,
     private datePipe: DatePipe,
     private router: ActivatedRoute,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private userService: UserService
   ) {
     this.sprintBacklogForm = this.fb.group({
       id: [null],
@@ -81,6 +82,13 @@ export class SprintComponent implements OnInit {
       this.projectId = parameter.id;
     });
     await this.getListSprint();
+    await this.getListUserByProjectId();
+  }
+
+  getListUserByProjectId() {
+    this.userService.getListUserByProjectId(this.projectId).subscribe((res) => {
+      this.listUser = res;
+    });
   }
 
   getListSprint() {
@@ -102,7 +110,9 @@ export class SprintComponent implements OnInit {
   }
 
   getListSprintBacklog() {
-    this.sprintbacklogService.getListSprintBacklog(this.sprintId).subscribe((res) => {
+    this.sprintbacklogService
+      .getListSprintBacklog(this.sprintId)
+      .subscribe((res) => {
         this.listSprintBacklog = res.listTask;
         this.listSprintTarget = this.listSprintBacklog.filter(
           (e) => e.isTarget === true
@@ -165,8 +175,6 @@ export class SprintComponent implements OnInit {
         id: 0,
         projectId: this.projectId,
         name: form.name,
-        //timeStart: this.datePipe.transform(form.timeStart, 'dd/MM/yyyy'),
-        //timeEnd: this.datePipe.transform(form.timeEnd, 'dd/MM/yyyy'),//form.timeEnd,
         timeStart: form.timeStart,
         timeEnd: form.timeEnd,
         // workingDay: 10,
@@ -259,7 +267,7 @@ export class SprintComponent implements OnInit {
         this.getListSprintBacklog();
         this.notificationService.showNotification(
           Constant.SUCCESS,
-          "Thêm target thành công"
+          'Thêm target thành công'
         );
       });
     } else {
