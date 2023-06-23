@@ -12,6 +12,10 @@
     color: #7e7e7e;
 }
 
+/* ::ng-deep .ant-table table thead tr th {
+    color: #ffe55f;
+} */
+
 ::ng-deep .ant-input {
     border-radius: 10px !important;
     color: #7e7e7e;

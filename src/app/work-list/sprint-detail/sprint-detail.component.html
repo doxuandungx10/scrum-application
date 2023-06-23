@@ -1,22 +1,48 @@
 <div class="content-body">
     <div class="container-fluid">
-        <div class="">
-            <div>
+        <div class="row">
+            <!-- <div class="col-lg-2">
                 <div style="width: 200px; margin-bottom: 5px;">
                     <nz-select [(ngModel)]="selectedSprintId" (ngModelChange)="selectedSprint($event)">
                         <nz-option *ngFor="let item of listSprint" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
                     </nz-select>
                 </div>
-            </div>
-            <div>
-                <table>
-
+            </div> -->
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <nz-select [(ngModel)]="selectedSprintId" (ngModelChange)="selectedSprint($event)" style="border: none">
+                            <nz-option *ngFor="let item of listSprint" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Tên thành viên</th>
+                                        <th scope="col">Tổng thời gian</th>
+                                        <th scope="col">Thời gian dự kiến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of listTimeUser; index as i">
+                                        <td>{{ data.fullName }}</td>
+                                        <td>{{ data.totalTime }}</td>
+                                        <td>{{ data.totalEstimatedTime }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- <nz-table>
                     <body>
                         <tr>
                             <td>
-                                <div class="box">User</div>
-                                <div class="box">TotalTime</div>
-                                <div class="box">EstimatedTime</div>
+                                <div class="box">Tên thành viên</div>
+                                <div class="box">Tổng thời gian</div>
+                                <div class="box">Thời gian dự kiến</div>
                             </td>
                             <td *ngFor="let data of listTimeUser">
                                 <div class="box">{{data.fullName}}</div>
@@ -25,68 +51,76 @@
                             </td>
                         </tr>
                     </body>
-                </table>
+                </nz-table> -->
             </div>
-            <div>
-                <nz-table #tableSprint [nzData]="listSprintBacklog" nzOuterBordered>
-                    <thead>
-                        <tr>
-                            <th>Hạng mục</th>
-                            <th>Công việc của Sprint</th>
-                            <th>Người thực hiện</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Estimated Time</th>
-                            <th *ngFor="let item of workingDayOfSprint">{{item}}</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let data of tableSprint.data; index as i">
-                            <td>{{data.name}}</td>
-                            <td>
-                                <div *ngFor="let item of data.listTasks">
-                                    {{item.name}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngFor="let item of data.listTasks">
-                                    {{item.fullName}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngFor="let item of data.listTasks">
-                                    {{item.priority}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngFor="let item of data.listTasks">
-                                    {{convertStatusText(item.status)}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngFor="let item of data.listTasks">
-                                    {{item.estimatedTime}}
-                                </div>
-                            </td>
-                            <ng-container>
-                                <td *ngFor="let time of workingDayOfSprint; index as k">
-                                    <div *ngIf="data.listTasks.length>0">
-                                        <div *ngFor="let item of data.listTasks">
-                                            <div *ngIf="item.listTaskDetail.length>0">
-                                                {{item.listTaskDetail[k].remainTime}}
+            <div class="col-lg-9">
+                <div class="card">
+                    <!-- <div class="card-body"> -->
+                        <div class="table-responsive">
+                            <nz-table #tableSprint [nzData]="listSprintBacklog" nzOuterBordered [nzScroll]="{x: '1600px'}">
+                                <thead>
+                                    <tr>
+                                        <th nzLeft class="z-index-2" width="50px">#</th>
+                                        <th nzLeft class="z-index-2" width="200px">Hạng mục</th>
+                                        <th nzLeft class="z-index-2" width="200px">Công việc của Sprint</th>
+                                        <th nzLeft class="z-index-2" width="200px">Người thực hiện</th>
+                                        <th width="150px">Priority</th>
+                                        <th width="150px">Trạng thái</th>
+                                        <th width="150px">Thời gian dự kiến</th>
+                                        <th *ngFor="let item of workingDayOfSprint" width="60px">{{item}}</th>
+                                        <th width="60px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of tableSprint.data; index as i">
+                                        <td nzLeft class="z-index-2">{{ i + 1 }}</td>
+                                        <td nzLeft class="z-index-2">{{data.name}}</td>
+                                        <td nzLeft class="z-index-2">
+                                            <div *ngFor="let item of data.listTasks">
+                                                {{item.name}}
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div *ngFor="let item of data.listTasks[i].listTaskDetail">{{item[k].remainTime}}</div> -->
-                                </td>
-                            </ng-container>
-                            <td>
-                                <i (click)="openModalAddTask(data)" nz-icon nzType="edit" nzTheme="outline"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </nz-table>
+                                        </td>
+                                        <td nzLeft class="z-index-2">
+                                            <div *ngFor="let item of data.listTasks">
+                                                {{item.fullName}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngFor="let item of data.listTasks">
+                                                {{item.priority}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngFor="let item of data.listTasks">
+                                                {{convertStatusText(item.status)}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngFor="let item of data.listTasks">
+                                                {{item.estimatedTime}}
+                                            </div>
+                                        </td>
+                                        <ng-container>
+                                            <td *ngFor="let time of workingDayOfSprint; index as k">
+                                                <div *ngIf="data.listTasks.length>0">
+                                                    <div *ngFor="let item of data.listTasks">
+                                                        <div *ngIf="item.listTaskDetail.length>0">
+                                                            {{item.listTaskDetail[k].remainTime}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div *ngFor="let item of data.listTasks[i].listTaskDetail">{{item[k].remainTime}}</div> -->
+                                            </td>
+                                        </ng-container>
+                                        <td>
+                                            <i (click)="openModalAddTask(data)" nz-icon nzType="edit" nzTheme="outline"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    <!-- </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -97,7 +131,7 @@
         <div class="title">
             <span>Backlog: {{selectedSprintBacklog.name}}</span>
             <span style="cursor: pointer; margin-left: 20px ;">
-                <i (click)="addBoxTask()" nz-icon nzType="plus" nzTheme="outline"></i>
+                <i (click)="addBoxTask()" class="fa-regular fa-plus"></i>
             </span>
         </div>
         <nz-table #taskTable [nzData]="listTask" nzOuterBordered [nzScroll]="{x: '900px'}">
