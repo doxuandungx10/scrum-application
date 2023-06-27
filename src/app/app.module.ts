@@ -713,6 +713,7 @@ import { SprintComponent } from './work-list/sprint/sprint.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 import { BoardComponent } from './work-list/board/board.component';
+import { ChartComponent } from './work-list/chart/chart.component';
 
 
 
@@ -1350,7 +1351,8 @@ import { BoardComponent } from './work-list/board/board.component';
     BacklogComponent,
     SprintComponent,
     SprintDetailComponent,
-    BoardComponent
+    BoardComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,

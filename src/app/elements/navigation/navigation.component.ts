@@ -153,7 +153,7 @@ export class NavigationComponent implements OnInit {
 
   pages = ['app-profile']
 
-  pluginsArray = ['uc-nestable', 'uc-lightgallery'];
+  pluginsArray = ['uc-nestable', 'uc-lightgallery', 'chart'];
 
   formsArray = ['form-element', 'form-validate'];
 }
