@@ -67,7 +67,7 @@ export class BacklogComponent implements OnInit {
       status: [0],
       statusText: ['To Do'],
       module: [null],
-      priority: [null],
+      priority: 1,
     });
     this.initialValue = this.backlogForm.value;
   }
@@ -86,7 +86,7 @@ export class BacklogComponent implements OnInit {
   }
 
   getListUser() {
-    this.userService.getListUser().subscribe((res) => {
+    this.userService.getListUserByProjectId(this.projectId).subscribe((res) => {
       this.listUser = res;
     });
   }

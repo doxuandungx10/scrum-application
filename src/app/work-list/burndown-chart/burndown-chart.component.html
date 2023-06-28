@@ -1,0 +1,73 @@
+ 
+ <div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-9 col-xxl-8">
+                <div class="card">
+                    <div class="card-header border-0 flex-wrap pb-0">
+                        <div class="mb-3" style="width: 250px">
+                            <nz-select [(ngModel)]="selectedSprintId" (ngModelChange)="selectedSprint($event)" style="border: none; font-size: 17px;">
+                                <nz-option *ngFor="let item of listSprint" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                            </nz-select>
+                        </div>
+                        <div class="d-flex flex-wrap mb-2">
+                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
+                                <input type="checkbox" class="custom-control-input" id="customCheck9">
+                                <label class="custom-control-label" for="customCheck9">
+                                    <span class="d-block  font-w500 mt-2">BTC</span>
+                                </label>
+                            </div>
+                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
+                                <input type="checkbox" class="custom-control-input" id="customCheck91">
+                                <label class="custom-control-label" for="customCheck91">
+                                    <span class="d-block  font-w500 mt-2">XRP</span>
+                                </label>
+                            </div>
+                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
+                                <input type="checkbox" class="custom-control-input" id="customCheck92">
+                                <label class="custom-control-label" for="customCheck92">
+                                    <span class="d-block font-w500 mt-2">ETH</span>
+                                </label>
+                            </div>
+                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
+                                <input type="checkbox" class="custom-control-input" id="customCheck93">
+                                <label class="custom-control-label" for="customCheck93">
+                                    <span class="d-block font-w500 mt-2">ZEC</span>
+                                </label>
+                            </div>
+                        </div>
+                        <mat-form-field   class="form-control style-1 default-select  mr-3 style-2 mb-3 dashboard-select">
+                        <mat-select value="Weekly (2021)">
+                            <mat-option value="Weekly (2021)">Weekly (2021)</mat-option>
+                            <mat-option value="Daily (2021)">Weekly (2021)</mat-option>
+                            <mat-option value="Yearly (2021)">Weekly (2021)</mat-option>
+                        </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="card-body pb-0">
+                        <!-- <div id="marketChart" class="market-line"></div> -->
+                        <div id="marketChart" class="market-line">
+                             <apx-chart
+                                [series]="chartOptions.series"
+                                [chart]="chartOptions.chart"
+                                [xaxis]="chartOptions.xaxis"
+                                [stroke]="chartOptions.stroke"
+                                [tooltip]="chartOptions.tooltip"
+                                [dataLabels]="chartOptions.dataLabels"
+                                [legend]="chartOptions.legend"
+                                [markers]="chartOptions.markers"
+                                [grid]="chartOptions.grid"
+                                [yaxis]="chartOptions.yaxis"
+                                [title]="chartOptions.title"
+                            ></apx-chart>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-xxl-4">
+                <app-graph-current-statistic></app-graph-current-statistic>
+            </div>
+        </div>
+    </div>
+ </div>

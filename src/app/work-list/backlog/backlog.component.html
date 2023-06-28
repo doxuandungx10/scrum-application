@@ -81,7 +81,7 @@
                 <div class="col-md-3">Người thực hiện</div>
                 <div class="col-md-9">
                     <nz-select style="width: 100%; border-radius: 4px;" formControlName="userId" (ngModelChange)="log($event)">
-                        <nz-option *ngFor="let item of listUser" [nzValue]="item.id" [nzLabel]="item.fullName"></nz-option>
+                        <nz-option *ngFor="let item of listUser" [nzValue]="item.userId" [nzLabel]="item.fullName"></nz-option>
                     </nz-select>
                 </div>
             </div>

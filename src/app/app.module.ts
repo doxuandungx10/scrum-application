@@ -713,7 +713,7 @@ import { SprintComponent } from './work-list/sprint/sprint.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 import { BoardComponent } from './work-list/board/board.component';
-import { ChartComponent } from './work-list/chart/chart.component';
+import { BurndownChartComponent } from './work-list/burndown-chart/burndown-chart.component';
 
 
 
@@ -1352,7 +1352,7 @@ import { ChartComponent } from './work-list/chart/chart.component';
     SprintComponent,
     SprintDetailComponent,
     BoardComponent,
-    ChartComponent
+    BurndownChartComponent
   ],
   imports: [
     CommonModule,

@@ -139,7 +139,7 @@ import { BacklogComponent } from './work-list/backlog/backlog.component';
 import { SprintComponent } from './work-list/sprint/sprint.component';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 import { BoardComponent } from './work-list/board/board.component';
-import { ChartComponent } from './work-list/chart/chart.component';
+import { BurndownChartComponent } from './work-list/burndown-chart/burndown-chart.component';
 
 
 
@@ -168,7 +168,7 @@ const routes: Routes = [
       { path: 'sprint', component: SprintComponent },
       { path: 'sprint-detail', component: SprintDetailComponent },
       { path: 'board', component: BoardComponent },
-      { path: 'chart', component: ChartComponent },
+      { path: 'chart', component: BurndownChartComponent },
       { path: 'index-1', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'my-wallets', component: MyWalletsComponent },
