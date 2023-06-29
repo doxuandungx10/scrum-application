@@ -2,71 +2,128 @@
  <div class="content-body">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-9 col-xxl-8">
+            <div class="col-xl-8 col-xxl-7">
                 <div class="card">
                     <div class="card-header border-0 flex-wrap pb-0">
                         <div class="mb-3" style="width: 250px">
-                            <nz-select [(ngModel)]="selectedSprintId" (ngModelChange)="selectedSprint($event)" style="border: none; font-size: 17px;">
-                                <nz-option *ngFor="let item of listSprint" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                            <nz-select [(ngModel)]="selectedSprint" (ngModelChange)="onChangeSelectSprint($event)" style="border: none; font-size: 17px;">
+                                <nz-option *ngFor="let item of listSprint" [nzValue]="item" [nzLabel]="item.name"></nz-option>
                             </nz-select>
                         </div>
                         <div class="d-flex flex-wrap mb-2">
-                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
-                                <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                <label class="custom-control-label" for="customCheck9">
-                                    <span class="d-block  font-w500 mt-2">BTC</span>
-                                </label>
-                            </div>
-                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
-                                <input type="checkbox" class="custom-control-input" id="customCheck91">
-                                <label class="custom-control-label" for="customCheck91">
-                                    <span class="d-block  font-w500 mt-2">XRP</span>
-                                </label>
-                            </div>
-                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
-                                <input type="checkbox" class="custom-control-input" id="customCheck92">
-                                <label class="custom-control-label" for="customCheck92">
-                                    <span class="d-block font-w500 mt-2">ETH</span>
-                                </label>
-                            </div>
-                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2">
-                                <input type="checkbox" class="custom-control-input" id="customCheck93">
-                                <label class="custom-control-label" for="customCheck93">
-                                    <span class="d-block font-w500 mt-2">ZEC</span>
+                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2" *ngFor="let user of listUser; index as i">
+                                <input type="checkbox" class="custom-control-input" id="{{i}}">
+                                <label class="custom-control-label" for="{{i}}">
+                                    <span class="d-block  font-w500 mt-2">{{user.fullName}}</span>
                                 </label>
                             </div>
                         </div>
-                        <mat-form-field   class="form-control style-1 default-select  mr-3 style-2 mb-3 dashboard-select">
+                        <!-- <mat-form-field   class="form-control style-1 default-select  mr-3 style-2 mb-3 dashboard-select">
                         <mat-select value="Weekly (2021)">
                             <mat-option value="Weekly (2021)">Weekly (2021)</mat-option>
                             <mat-option value="Daily (2021)">Weekly (2021)</mat-option>
                             <mat-option value="Yearly (2021)">Weekly (2021)</mat-option>
                         </mat-select>
-                        </mat-form-field>
+                        </mat-form-field> -->
                     </div>
                     <div class="card-body pb-0">
                         <!-- <div id="marketChart" class="market-line"></div> -->
-                        <div id="marketChart" class="market-line">
+                        <div id="lineChart" class="market-line">
                              <apx-chart
-                                [series]="chartOptions.series"
-                                [chart]="chartOptions.chart"
-                                [xaxis]="chartOptions.xaxis"
-                                [stroke]="chartOptions.stroke"
-                                [tooltip]="chartOptions.tooltip"
-                                [dataLabels]="chartOptions.dataLabels"
-                                [legend]="chartOptions.legend"
-                                [markers]="chartOptions.markers"
-                                [grid]="chartOptions.grid"
-                                [yaxis]="chartOptions.yaxis"
-                                [title]="chartOptions.title"
+                                [series]="lineChartOptions.series"
+                                [chart]="lineChartOptions.chart"
+                                [xaxis]="lineChartOptions.xaxis"
+                                [stroke]="lineChartOptions.stroke"
+                                [tooltip]="lineChartOptions.tooltip"
+                                [dataLabels]="lineChartOptions.dataLabels"
+                                [legend]="lineChartOptions.legend"
+                                [markers]="lineChartOptions.markers"
+                                [grid]="lineChartOptions.grid"
+                                [yaxis]="lineChartOptions.yaxis"
+                                [title]="lineChartOptions.title"
                             ></apx-chart>
                         </div>
                         
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-xxl-4">
-                <app-graph-current-statistic></app-graph-current-statistic>
+            <div class="col-xl-4 col-xxl-5">
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h4 class="fs-20 text-black">Percentage completed</h4>
+                    </div>
+                    <div class="card-body pb-0">
+                        <div id="radialBar">
+                            <apx-chart class="current-chart"
+                                [series]="radialBarOptions.series"
+                                [chart]="radialBarOptions.chart"
+                                [plotOptions]="radialBarOptions.plotOptions"
+                                [labels]="radialBarOptions.labels"
+                                [stroke]="radialBarOptions.stroke"
+                                [colors]="radialBarOptions.colors"
+                            ></apx-chart>
+                        </div>
+                        
+                        <div class="chart-content">	
+                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                                <div>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill="#EB8153"/>
+                                    </svg>
+                                    <span class="fs-14">Nguyên (66%)</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">55 giờ</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                                <div>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill="#71B945"/>
+                                    </svg>
+                                    
+                                    <span class="fs-14">Việt Hoàng (50%)</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">30 giờ</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                                <div>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill="#4A8CDA"/>
+                                    </svg>
+                                    <span class="fs-14">Thu Hiền (11%)</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">12 giờ</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                                <div>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill="#6647BF"/>
+                                    </svg>
+                                    <span class="fs-14">Lý Thùy Linh (23%)</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">55 giờ</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                                <div>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill="#2454DF"/>
+                                    </svg>
+                                    <span class="fs-14">Đỗ Xuân Dũng (95%)</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">40 giờ</h5>
+                                </div>
+                            </div>
+                        </div>	
+                    </div>
+                </div>
             </div>
         </div>
     </div>

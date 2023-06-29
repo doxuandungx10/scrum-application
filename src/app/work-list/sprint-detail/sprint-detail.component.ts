@@ -9,6 +9,8 @@ import { Task } from 'src/app/share/class/task.class';
 import { SprintBacklog } from 'src/app/share/class/sprintbacklog.class';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
+import { Constant } from 'src/app/share/Constants/Constant';
 
 @Component({
   selector: 'app-sprint-detail',
@@ -60,7 +62,8 @@ export class SprintDetailComponent implements OnInit {
     private shareService: ShareService,
     private taskService: TaskService,
     private sprintService: SprintService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {
     this.taskForm = this.fb.group({
       id: [null],
@@ -125,6 +128,10 @@ export class SprintDetailComponent implements OnInit {
     this.taskService
       .updateTask(this.selectedSprintBacklog.id, this.listTask)
       .subscribe((res) => {
+        this.notificationService.showNotification(
+          Constant.SUCCESS,
+          Constant.MESSAGE_UPDATE_SUCCESS
+        );
         this.isVisibleAddTask = false;
         this.getListSprintBacklog();
         this.getListUser();

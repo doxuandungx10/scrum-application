@@ -29,6 +29,7 @@ export class Constant {
 
 export class UrlConstant {
   public static readonly USER = '/api/User';
+  public static readonly CHART = '/api/Chart';
   public static readonly LOGIN = '/api/Login';
   public static readonly PROJECT = '/api/Project';
   public static readonly POSITION = '/api/Position';

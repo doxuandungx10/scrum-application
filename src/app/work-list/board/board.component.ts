@@ -7,6 +7,8 @@ import { SprintService } from 'src/app/services/sprint.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from 'src/app/services/share-service/notification.service';
+import { Constant } from 'src/app/share/Constants/Constant';
 
 
 @Component({
@@ -50,7 +52,8 @@ export class BoardComponent implements OnInit {
     private sprintService: SprintService,
     private notification: NzNotificationService,
     private userService: UserService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   async ngOnInit() {
@@ -190,7 +193,12 @@ export class BoardComponent implements OnInit {
   }
 
   updateTaskStatus(taskId: number, status: number) {
-    this.taskService.updateTaskStatus(taskId, status).subscribe((res) => {});
+    this.taskService.updateTaskStatus(taskId, status).subscribe((res) => {
+      this.notificationService.showNotification(
+        Constant.SUCCESS,
+        Constant.MESSAGE_UPDATE_SUCCESS
+      );
+    });
   }
 
   filterData() {}
