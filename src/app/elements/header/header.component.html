@@ -23,7 +23,7 @@
                 <ul class="navbar-nav header-right main-notification">
                     <li class="nav-item dropdown notification_dropdown" (click)="togglechatbar()">
                         <span>Dark</span>
-                        <mat-slide-toggle style="margin: 0 0.7rem;" [checked]="defaultLightMode" (change)="toggle($event)">
+                        <mat-slide-toggle style="margin: 0 0.7rem;" [checked]="defaultLightMode" (change)="toggleTheme()">
                         </mat-slide-toggle>
                         <span>Light</span>
                     </li>

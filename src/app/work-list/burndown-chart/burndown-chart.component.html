@@ -11,12 +11,14 @@
                             </nz-select>
                         </div>
                         <div class="d-flex flex-wrap mb-2">
-                            <div class="custom-control check-switch custom-checkbox mr-4 mb-2" *ngFor="let user of listUser; index as i">
-                                <input type="checkbox" class="custom-control-input" id="{{i}}">
-                                <label class="custom-control-label" for="{{i}}">
-                                    <span class="d-block  font-w500 mt-2">{{user.fullName}}</span>
-                                </label>
-                            </div>
+                            <form [formGroup]="myForm" style="display: flex;">
+                                <div class="custom-control check-switch custom-checkbox mr-4 mb-2" *ngFor="let user of listUser; index as i">
+                                    <input type="checkbox" class="custom-control-input" id="{{i}}" (change)="onChange(user.userId, $event)">
+                                    <label class="custom-control-label" for="{{i}}">
+                                        <span class="d-block  font-w500 mt-2">{{user.fullName}}</span>
+                                    </label>
+                                </div>
+                            </form>
                         </div>
                         <!-- <mat-form-field   class="form-control style-1 default-select  mr-3 style-2 mb-3 dashboard-select">
                         <mat-select value="Weekly (2021)">
@@ -30,17 +32,17 @@
                         <!-- <div id="marketChart" class="market-line"></div> -->
                         <div id="lineChart" class="market-line">
                              <apx-chart
-                                [series]="lineChartOptions.series"
-                                [chart]="lineChartOptions.chart"
-                                [xaxis]="lineChartOptions.xaxis"
-                                [stroke]="lineChartOptions.stroke"
-                                [tooltip]="lineChartOptions.tooltip"
-                                [dataLabels]="lineChartOptions.dataLabels"
-                                [legend]="lineChartOptions.legend"
-                                [markers]="lineChartOptions.markers"
-                                [grid]="lineChartOptions.grid"
-                                [yaxis]="lineChartOptions.yaxis"
-                                [title]="lineChartOptions.title"
+                                [series]="lineChartOptions?.series"
+                                [chart]="lineChartOptions?.chart"
+                                [xaxis]="lineChartOptions?.xaxis"
+                                [stroke]="lineChartOptions?.stroke"
+                                [tooltip]="lineChartOptions?.tooltip"
+                                [dataLabels]="lineChartOptions?.dataLabels"
+                                [legend]="lineChartOptions?.legend"
+                                [markers]="lineChartOptions?.markers"
+                                [grid]="lineChartOptions?.grid"
+                                [yaxis]="lineChartOptions?.yaxis"
+                                [title]="lineChartOptions?.title"
                             ></apx-chart>
                         </div>
                         
@@ -50,33 +52,33 @@
             <div class="col-xl-4 col-xxl-5">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h4 class="fs-20 text-black">Percentage completed</h4>
+                        <h4 class="fs-20 text-black">Tỉ lệ hoàn thành task</h4>
                     </div>
                     <div class="card-body pb-0">
                         <div id="radialBar">
                             <apx-chart class="current-chart"
-                                [series]="radialBarOptions.series"
-                                [chart]="radialBarOptions.chart"
-                                [plotOptions]="radialBarOptions.plotOptions"
-                                [labels]="radialBarOptions.labels"
-                                [stroke]="radialBarOptions.stroke"
-                                [colors]="radialBarOptions.colors"
+                                [series]="radialBarOptions?.series"
+                                [chart]="radialBarOptions?.chart"
+                                [plotOptions]="radialBarOptions?.plotOptions"
+                                [labels]="radialBarOptions?.labels"
+                                [stroke]="radialBarOptions?.stroke"
+                                [colors]="radialBarOptions?.colors"
                             ></apx-chart>
                         </div>
                         
                         <div class="chart-content">	
-                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                            <div class="d-flex justify-content-between mb-2 align-items-center" *ngFor="let user of dataChartRadial; index as i">
                                 <div>
-                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="15" height="15" rx="7.5" fill="#EB8153"/>
+                                    <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="15" height="15" rx="7.5" fill='listColor[0]'/>
                                     </svg>
-                                    <span class="fs-14">Nguyên (66%)</span>
+                                    <span class="fs-14">{{user.fullName}} ({{user.percentageCompleted}}%)</span>
                                 </div>
                                 <div>
-                                    <h5 class="mb-0">55 giờ</h5>
+                                    <h5 class="mb-0">{{user.completedTime}}/{{user.totalTime}} giờ</h5>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between mb-2 align-items-center">
+                            <!-- <div class="d-flex justify-content-between mb-2 align-items-center">
                                 <div>
                                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="15" height="15" rx="7.5" fill="#71B945"/>
@@ -120,7 +122,7 @@
                                 <div>
                                     <h5 class="mb-0">40 giờ</h5>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>	
                     </div>
                 </div>

@@ -149,7 +149,7 @@
                                             <tr *ngFor="let data of listDayOff; index as i">
                                                 <td style="width: 250px;">
                                                     <nz-select [(ngModel)]="data.userId">
-                                                        <nz-option *ngFor="let user of listUser" [nzValue]="user.id" [nzLabel]="user.fullName"></nz-option>
+                                                        <nz-option *ngFor="let user of listUser" [nzValue]="user.userId" [nzLabel]="user.fullName"></nz-option>
                                                     </nz-select>
                                                 </td>
                                                 <td><nz-date-picker nzFormat="dd/MM/yyyy"  [(ngModel)]="data.dayOff" ></nz-date-picker></td>

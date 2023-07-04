@@ -25,6 +25,20 @@ export class Constant {
   public static readonly DELETE = 'Xóa';
   public static readonly CREATE = 'Thêm';
   public static readonly UPDATE = 'Sửa';
+  public static readonly RANDOM_COLOR = [
+    '#2da844',
+    '#2454DF',
+    '#5ee6d1',
+    '#db4027',
+    '#e6bd19',
+    '#9592f5',
+    '#498bd9',
+    '#70b944',
+    '#eac1c1',
+    '#00ffb1',
+    '#159663',
+    '#3a2c00',
+  ];
 }
 
 export class UrlConstant {

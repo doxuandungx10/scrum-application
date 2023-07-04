@@ -11,4 +11,8 @@ export class BurndownChartService extends ConfigService {
   getRemainDataBySprintId(sprintId: number): Observable<any> {
     return this.get(UrlConstant.CHART + '/GetRemainDataBySprintId', { sprintId });
   }
+
+  getPercentageCompleted(sprintId: number): Observable<any> {
+    return this.get(UrlConstant.CHART + '/GetPercentageCompleted', { sprintId });
+  }
 }
