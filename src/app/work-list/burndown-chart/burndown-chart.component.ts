@@ -90,7 +90,7 @@ export class BurndownChartComponent implements OnInit {
   getListUser() {
     this.userService.getListUserByProjectId(this.projectId).subscribe((res) => {
       this.listUser = res;
-      this.listColor = Constant.RANDOM_COLOR.splice(0, this.listUser.length);
+      this.listColor = Constant.RANDOM_COLOR.slice(0, this.listUser.length);
       console.log('listUser', this.listUser);
     });
   }
@@ -275,7 +275,6 @@ export class BurndownChartComponent implements OnInit {
         this.radialBarOptions.series.push(el.percentageCompleted);
       });
       console.log(this.dataChartRadial);
-      console.log((this.radialBarOptions.colors));
     })
   }
 

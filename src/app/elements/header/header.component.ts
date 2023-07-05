@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     let bodyElm = document.getElementsByTagName('body');
     if(this.defaultLightMode) {
       bodyElm[0].setAttribute('data-theme-version', 'transperent');
-      bodyElm[0].setAttribute('data-primary', 'color_4');
+      bodyElm[0].setAttribute('data-primary', 'color_6');
     } else {
       bodyElm[0].setAttribute('data-theme-version', 'dark');
       bodyElm[0].setAttribute('data-primary', 'color_1');

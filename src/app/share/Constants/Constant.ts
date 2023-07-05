@@ -26,7 +26,7 @@ export class Constant {
   public static readonly CREATE = 'Thêm';
   public static readonly UPDATE = 'Sửa';
   public static readonly RANDOM_COLOR = [
-    '#2da844',
+    '#54b535',
     '#2454DF',
     '#5ee6d1',
     '#db4027',
