@@ -62,15 +62,15 @@
                                             <div class="dpl-fl status-line">
                                                 <div class="dpl-fl">
                                                     <div class="circle todo-view"></div>
-                                                    <span>To Do</span>
+                                                    <span class="status-1">To Do</span>
                                                 </div>
                                                 <div class="dpl-fl">
                                                     <div class="circle doing-view"></div>
-                                                    <span class="status-1">Doing</span>
+                                                    <span class="status-2">Doing</span>
                                                 </div>
                                                 <div class="dpl-fl">
                                                     <div class="circle done-view"></div>
-                                                    <span class="status-2">Done</span>
+                                                    <span class="status-3">Done</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,9 @@
                                                     <div *ngIf="item.priority==1">
                                                         <div>
                                                             <span (click)="showModalDetail(item)">{{item.name}}&nbsp;</span>
-                                                            <span *ngIf="item.totalTask>0">{{item.doneTask}}/{{item.totalTask}}</span>
+                                                            <span *ngIf="item.totalTask>0 && item.doneTask==0" class="status-1">({{item.doneTask}}/{{item.totalTask}} tasks)</span>
+                                                            <span *ngIf="item.totalTask>0 && item.doneTask>0 && item.doneTask!==item.totalTask" class="status-2">({{item.doneTask}}/{{item.totalTask}} tasks)</span>
+                                                            <span *ngIf="item.totalTask>0 && item.doneTask==item.totalTask" class="status-3">({{item.doneTask}}/{{item.totalTask}} tasks)</span>
                                                         </div>
                                                         <span class="is-target" (click)="insertSprintTarget(item)">
                                                             <i *ngIf="!item.isTarget" class="fa-regular fa-star not-target"></i>
@@ -268,5 +270,3 @@
         <button type="button" class="btn light btn-primary mgr10" (click)="addSprint()">Thêm</button>
     </div>
 </nz-modal>
-
-<!--  -->

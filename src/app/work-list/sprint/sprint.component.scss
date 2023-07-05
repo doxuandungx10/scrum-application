@@ -87,16 +87,16 @@
     }
 }
 
-.status-0 {
-    //color: pink;
-}
-
 .status-1 {
-    color: #006899;
+    color: #3d91d9;
 }
 
 .status-2 {
-    color: #008F68;
+    color: #c99e23
+}
+
+.status-3 {
+    color: #0aa379
 }
 
 .circle {
@@ -108,15 +108,15 @@
 }
 
 .todo-view {
-    background: black;
+    background: #3d91d9;
 }
 
 .doing-view {
-    background: #006899;
+    background: #c99e23
 }
 
 .done-view {
-    background: #008F68;
+    background: #0aa379
 }
 
 .dpl-fl {
