@@ -17,11 +17,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 project-card" >
+            <div *ngIf="userOnline.isAdmin" class="col-sm-2 project-card" (click)="addProject()">
                 <div class="card text-white bg-primary">
                     <div class="card-header" style="border: none;">
                     </div>
-                    <div class="card-body mb-0" style="text-align: center;">
+                    <div class="card-body mb-0" style="display: flex; justify-content: center; align-items: center;">
                         <i class="fa-solid fa-circle-plus" style="color: white; font-size: 4em;"></i>
                     </div>
                     <div class="card-footer bg-transparent border-0 text-white">
@@ -32,3 +32,36 @@
     </div>
     <!-- <app-footer></app-footer> -->
 </div>
+
+<nz-modal [(nzVisible)]="isVisibleAddProj" nzTitle="Dự án" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()" [formGroup]="projectForm">
+    <div *nzModalContent>
+        <div class="row mgb-10">
+            <div class="col-md-3">Tên dự án</div>
+            <div class="col-md-9">
+                <input nz-input type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="row mgb-10">
+            <div class="col-md-3">Mô tả</div>
+            <div class="col-md-9">
+                <textarea nz-input formControlName="description"></textarea>
+            </div>
+        </div>
+        <!-- <div>
+            <span>Tên dự án</span>
+            <input nz-input type="text" formControlName="name">
+        </div>
+        <div>
+            <div>Mô tả</div>
+            <textarea nz-input formControlName="description"></textarea>
+        </div> -->
+        <div class="row mgb-10">
+            <div class="col-md-3">Người tạo</div>
+            <div class="col-md-9" style="font-weight: bold;">{{userOnline.fullName}}</div>
+        </div>
+    </div>
+    <div *nzModalFooter>
+        <button class="btn btn-outline-dark mgr10" type="button" (click)="handleCancel()">Hủy</button>
+        <button type="button" class="btn light btn-primary mgr10" (click)="handleOk()">Lưu</button>
+    </div>
+</nz-modal>
