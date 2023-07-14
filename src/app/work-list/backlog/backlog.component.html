@@ -23,7 +23,7 @@
         </div>
         <div class="table-responsive">
             <!-- <table class="table table-striped"> -->
-            <nz-table class="table table-striped" #basicTable [nzData]="listBacklog" nzShowSizeChanger (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" nzOuterBordered>
+            <nz-table #basicTable [nzData]="listBacklog" nzShowSizeChanger (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" nzOuterBordered>
             <thead>
             <tr>
                 <th *ngIf="selectedSprint.id != 0">

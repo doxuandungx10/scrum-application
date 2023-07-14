@@ -140,6 +140,7 @@ import { SprintComponent } from './work-list/sprint/sprint.component';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 import { BoardComponent } from './work-list/board/board.component';
 import { BurndownChartComponent } from './work-list/burndown-chart/burndown-chart.component';
+import { AdminLayoutComponent } from './work-list/administrator/admin-layout/admin-layout.component';
 
 
 
@@ -286,6 +287,7 @@ const routes: Routes = [
   { path: 'app-profile', component: ProfileComponent },
   { path: 'page-register', component: RegisterComponent },
   { path: 'page-login', component: LoginComponent },
+  { path: 'manage-user', component: AdminLayoutComponent },
   { path: 'page-lock-screen', component: LockScreenComponent },
   { path: 'page-forgot-password', component: ForgotPasswordComponent },
   { path: 'page-error-400', component: Error400Component },

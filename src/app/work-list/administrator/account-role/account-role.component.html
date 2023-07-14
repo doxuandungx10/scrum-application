@@ -1,0 +1,46 @@
+<div class="data-table content-layout">
+  <div class="d-flex justify-content-between mg-bt-20">
+    <div class="title-fs16-bold">Phân quyền tài khoản user</div>
+  </div>
+  <nz-table #userTable [nzData]="listUser" [nzPageSizeOptions]="pageSize" [nzPageSize]="defaultPage" nzSize="small"
+    nzShowSizeChanger [nzShowTotal]="rangeTemplate" [nzScroll]="{y : '600px'}">
+    <thead>
+      <tr>
+        <th nzLeft class="text-nowrap" nzWidth="50px">STT</th>
+        <th nzleft class="text-nowrap" nzWidth="50px">Action</th>
+        <th nzLeft class="text-nowrap" nzWidth="150px">Họ và tên</th>
+        <th nzLeft class="text-nowrap" nzWidth="100px">Username</th>
+        <th nzWidth="100px" *ngFor="let role of this.allRoles; let i = index" [attr.data-index]="i" class=""
+          style="text-align: center">
+            {{ role.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userTable.data; let i = index">
+        <td nzLeft class="text-nowrap">
+          {{ getRowIndex(i, userTable.nzPageIndex, userTable.nzPageSize) }}
+        </td>
+        <td nzleft class="text-nowrap">
+          <button nzType="primary" nzSize="small" nz-button (click)="saveUserRole(user)">
+            <i class="fa-regular fa-floppy-disk"></i>
+          </button>
+        </td>
+        <td nzLeft class="text-nowrap">{{user.fullName}}</td>
+        <td nzLeft class="text-nowrap">{{user.username}}</td>
+        <td *ngFor="let role of this.allRoles; let i = index" [attr.data-index]="i" class=""
+          [nzAlign]="'center'">
+            <ng-container *ngIf="checkRole(role.value, user) == true; else elseBlock">
+              <input type="checkbox" checked (click)="updateUserRole(user, role.value, 0)" />
+            </ng-container>
+            <ng-template #elseBlock>
+              <input type="checkbox" (click)="updateUserRole(user, role.value, 1)" />
+            </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #rangeTemplate let-range="range" let-total>
+    {{ range[0] }}-{{ range[1] }} trên {{ total }} người dùng
+  </ng-template>
+</div>

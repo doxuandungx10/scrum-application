@@ -25,12 +25,12 @@
             <li [ngClass]="{'mm-active': chartsArray.indexOf(currentHref) > -1}">
                 <a [routerLink]="['sprint']" class="{{(currentHref == 'sprint') ? 'mm-active' : ''}}" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-061-puzzle"></i>
-                    <span class="nav-text">Sprint</span>
+                    <span class="nav-text">Sprint Planning</span>
                 </a>
             </li>
             <li [ngClass]="{'mm-active': bootstrapArray.indexOf(currentHref) > -1}">
                 <a [routerLink]="['sprint-detail']" class="{{(currentHref == 'sprint-detail') ? 'mm-active' : ''}}" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-003-diamond"></i>
+                    <i class="flaticon-055-cube"></i>
                     <span class="nav-text">Sprint Detail</span>
                 </a>
             </li>
@@ -42,7 +42,7 @@
             </li>
             <li [ngClass]="{'mm-active': pluginsArray.indexOf(currentHref) > -1}">
                 <a [routerLink]="['chart']" class="{{(currentHref == 'chart') ? 'mm-active' : ''}}" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-053-heart"></i>
+                    <i class="flaticon-004-bar-chart" style="margin-right: 2px;"></i>
                     <span class="nav-text">Chart</span>
                 </a>
             </li>

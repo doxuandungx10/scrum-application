@@ -226,13 +226,13 @@
     <div *nzModalContent>
         <div [formGroup]="addSprintForm">
             <div class="row mgb-10">
-                <div class="col-md-3">TimeStart</div>
+                <div class="col-md-3">Bắt đầu</div>
                 <div class="col-md-9">
                     <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="timeStart"></nz-date-picker>
                 </div>
             </div>
             <div class="row mgb-10">
-                <div class="col-md-3">TimeEnd</div>
+                <div class="col-md-3">Kết thúc</div>
                 <div class="col-md-9">
                     <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="timeEnd"></nz-date-picker>
                 </div>
@@ -244,9 +244,9 @@
                 </div>
             </div>
             <div class="row mgb-10">
-                <div class="col-md-3">TimeOff Start</div>
+                <div class="col-md-3">Ngày nghỉ bắt đầu</div>
                 <div class="col-md-9">
-                    <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="dayOffStart"></nz-date-picker>
+                    <nz-date-picker style="margin-bottom: 10px;" nzFormat="dd/MM/yyyy" formControlName="dayOffStart"></nz-date-picker>
                     <nz-select nzAllowClear formControlName="timeOffStart" nzPlaceHolder="Thời gian từ" class="w-100">
                         <nz-option nzLabel="Cả ngày" nzValue="full"></nz-option>
                         <nz-option nzLabel="Nửa ngày" nzValue="half"></nz-option>
@@ -254,9 +254,9 @@
                 </div>
             </div>
             <div class="row mgb-10">
-                <div class="col-md-3">TimeOff End</div>
+                <div class="col-md-3">Ngày nghỉ kết thúc</div>
                 <div class="col-md-9">
-                    <nz-date-picker nzFormat="dd/MM/yyyy" formControlName="dayOffEnd"></nz-date-picker>
+                    <nz-date-picker style="margin-bottom: 10px;" nzFormat="dd/MM/yyyy" formControlName="dayOffEnd"></nz-date-picker>
                     <nz-select nzAllowClear formControlName="timeOffEnd" nzPlaceHolder="Thời gian đến" class="w-100">
                         <nz-option nzLabel="Cả ngày" nzValue="full"></nz-option>
                         <nz-option nzLabel="Nửa ngày" nzValue="half"></nz-option>

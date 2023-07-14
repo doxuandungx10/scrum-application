@@ -1,0 +1,86 @@
+<div class="">
+    <div class="employee-header">
+        <!-- <div>Thông tin nhân viên</div> -->
+        <div class="btn-search">
+            <input nz-input placeholder="Tìm kiếm..." />
+        </div>
+        <div class="btn-add" (click)="showAddUser()">
+            <!-- <button nz-button> -->
+            <i class="fa-solid fa-plus"></i>
+            <span>Tạo tài khoản mới</span>
+            <!-- </button> -->
+        </div>
+    </div>
+    <div class="body">
+        <nz-table #userTable [nzData]="listUser" nzOuterBordered>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Họ và tên</th>
+                    <th style="width: 15%;">Email</th>
+                    <th style="width: 10%;">Vị trí</th>
+                    <th style="width: 35%;">Thuộc dự án</th>
+                    <!-- <th>Admin</th> -->
+                    <!-- <th></th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of userTable.data">
+                    <td>{{data.fullName}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.positionText}}</td>
+                    <td>{{data.listProjectName.join(", ")}}</td>
+                    <!-- <td>
+                        <label nz-checkbox [(ngModel)]="data.checked"></label>
+                    </td> -->
+                    <!-- <td>
+                        <i class="mgr-10" nz-icon nzType="undo" nzTheme="outline"></i>
+                        <i nz-icon nzType="save" nzTheme="outline"></i>
+                    </td> -->
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+<!-- <app-user-add [isVisible]="isVisibleAdd" (closeModal)="closeModal()"></app-user-add> -->
+
+<nz-modal [formGroup]="userForm" [(nzVisible)]="isVisibleAdd" nzTitle="Thêm người dùng " (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+    <div class="box-info mgb-10">
+        <span>Họ Tên</span>
+        <input nz-input type="text" formControlName="fullName" />
+        <div class="message-required" *ngIf="f.fullName.errors && submitted">
+            <div *ngIf="f.fullName.errors.required">
+                *Họ tên không được để trống
+            </div>
+        </div>
+    </div>
+    <div class="box-info mgb-10">
+        <div>Email</div>
+        <input nz-input type="email" formControlName="email" />
+        <div class="message-required" *ngIf="f.email.errors && submitted">
+            <div *ngIf="f.email.errors.required">
+                *Email không được để trống
+            </div>
+            <div *ngIf="f.email.errors.email">
+                *Email không hợp lệ
+            </div>
+        </div>
+    </div>
+    <div class="box-info mgb-10">
+        <div>Vị trí</div>
+        <nz-select formControlName="position">
+            <nz-option [nzValue]="1" nzLabel="Dev"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Tester"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="BA"></nz-option>
+            <nz-option [nzValue]="4" nzLabel="Designer"></nz-option>
+        </nz-select>
+        <div class="message-required" *ngIf="f.position.errors && submitted">
+            <div *ngIf="f.position.errors.required">
+                *Vị trí không được để trống
+            </div>
+        </div>
+    </div>
+    <div class="box-info">
+        <label class="mgr-10" nz-checkbox formControlName="isAdmin"></label>
+        <span>IsAdmin</span>
+    </div>
+</nz-modal>

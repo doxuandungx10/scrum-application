@@ -714,6 +714,9 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { SprintDetailComponent } from './work-list/sprint-detail/sprint-detail.component';
 import { BoardComponent } from './work-list/board/board.component';
 import { BurndownChartComponent } from './work-list/burndown-chart/burndown-chart.component';
+import { EmployeeComponent } from './work-list/administrator/employee/employee.component';
+import { AccountRoleComponent } from './work-list/administrator/account-role/account-role.component';
+import { AdminLayoutComponent } from './work-list/administrator/admin-layout/admin-layout.component';
 
 
 
@@ -1352,7 +1355,10 @@ import { BurndownChartComponent } from './work-list/burndown-chart/burndown-char
     SprintComponent,
     SprintDetailComponent,
     BoardComponent,
-    BurndownChartComponent
+    BurndownChartComponent,
+    EmployeeComponent,
+    AccountRoleComponent,
+    AdminLayoutComponent
   ],
   imports: [
     CommonModule,
