@@ -11,7 +11,7 @@
                         <div class="item-sprint">{{item.name}}</div>
                         <div class="item-sprint italic-text">{{item.dateStart | date: 'dd/MM/yyyy'}} - {{item.dateEnd | date: 'dd/MM/yyyy'}}</div>
                     </div>
-                    <div class="add-sprint" (click)="openModalAddSprint()">
+                    <div *ngIf="userOnline.isAdmin" class="add-sprint" (click)="openModalAddSprint()">
                         <i class="fa-regular fa-plus"> </i>
                         <span style="color: #00838f;"> Thêm</span>
                     </div>
@@ -93,7 +93,7 @@
                                                             <span *ngIf="item.totalTask>0 && item.doneTask>0 && item.doneTask!==item.totalTask" class="status-2">({{item.doneTask}}/{{item.totalTask}} tasks)</span>
                                                             <span *ngIf="item.totalTask>0 && item.doneTask==item.totalTask" class="status-3">({{item.doneTask}}/{{item.totalTask}} tasks)</span>
                                                         </div>
-                                                        <span class="is-target" (click)="insertSprintTarget(item)">
+                                                        <span *ngIf="userOnline.isAdmin" class="is-target" (click)="insertSprintTarget(item)">
                                                             <i *ngIf="!item.isTarget" class="fa-regular fa-star not-target"></i>
                                                             <i *ngIf="item.isTarget" class="fa-regular fa-star" style="color: red;"></i>
                                                         </span>
@@ -128,7 +128,7 @@
                                     </div>
                                 </ng-template>
                                 <ng-template ngbPanelContent>
-                                    <div class="dpl-fl">
+                                    <div *ngIf="userOnline.isAdmin" class="dpl-fl">
                                         <div class="mgr-10 cur" (click)="addDayOff()">
                                             <i class="fa-regular fa-plus"></i>
                                             <span>&nbsp;Thêm</span>
@@ -150,22 +150,22 @@
                                         <tbody>
                                             <tr *ngFor="let data of listDayOff; index as i">
                                                 <td style="width: 250px;">
-                                                    <nz-select [(ngModel)]="data.userId">
+                                                    <nz-select [(ngModel)]="data.userId" [disabled]="!userOnline.isAdmin">
                                                         <nz-option *ngFor="let user of listUser" [nzValue]="user.userId" [nzLabel]="user.fullName"></nz-option>
                                                     </nz-select>
                                                 </td>
-                                                <td><nz-date-picker nzFormat="dd/MM/yyyy"  [(ngModel)]="data.dayOff" ></nz-date-picker></td>
+                                                <td><nz-date-picker nzFormat="dd/MM/yyyy"  [(ngModel)]="data.dayOff" [disabled]="!userOnline.isAdmin"></nz-date-picker></td>
                                                 <td>
                                                     <!-- <input nz-input [(ngModel)]="data.totalDayOff" type="number">  formControlName="timeOffEnd" -->
                                                     
-                                                <nz-select nzAllowClear nzPlaceHolder="Thời gian nghỉ" [(ngModel)]="data.dayShift" class="w-100">
+                                                <nz-select nzAllowClear nzPlaceHolder="Thời gian nghỉ" [(ngModel)]="data.dayShift" class="w-100" [disabled]="!userOnline.isAdmin">
                                                         <nz-option nzLabel="Cả ngày" [nzValue]=0></nz-option>
                                                         <nz-option nzLabel="Sáng" [nzValue]=1></nz-option>
                                                         <nz-option nzLabel="Chiều" [nzValue]=2></nz-option>
                                                     </nz-select>
                                                 </td>
                 
-                                                <td>
+                                                <td *ngIf="userOnline.isAdmin">
                                                     <i (click)="removeTime(i)" class="fa-solid fa-trash"></i>
                                                 </td>
                                             </tr>

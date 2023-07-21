@@ -1,6 +1,6 @@
 <div class="content-body">
     <div class="container-fluid">
-        <div style="display: flex; margin-bottom: 0.5rem;">
+        <div style="display: flex; margin-bottom: 0.5rem;" *ngIf="userOnline.isAdmin">
             <button type="button" class="btn tp-btn-light btn-primary btn-sm" (click)="openModalAddBacklog()">
                 <i class="fa-solid fa-plus"></i> Thêm mới</button>
 
@@ -36,7 +36,7 @@
                 <th scope="col">Người thực hiện</th>
                 <th scope="col">Piority</th>
                 <th scope="col">Status</th>
-                <th scope="col">Action</th>
+                <th *ngIf="userOnline.isAdmin" scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -44,13 +44,13 @@
                 <td *ngIf="selectedSprint.id != 0">
                     <label nz-checkbox [(ngModel)]="data.checked" [nzDisabled]="(data.percentageRemain == 0)? true: false" (ngModelChange)="changeChecked($event, data)"></label>
                 </td>
-                <th scope="row">{{ i + 1 }}</th>
+                <th scope="row" style="padding-left: 15px;">{{ i + 1 }}</th>
                 <td>{{data.name}}</td>
                 <td>{{data.description}}</td>
                 <td>{{data.performerName}}</td>
                 <td>{{data.priority}}</td>
                 <td>{{data.statusText}}</td>
-                <td>
+                <td *ngIf="userOnline.isAdmin">
                     <i class="fa-solid fa-pen-to-square fa-lg mgr10" (click)="openModalEdit(data)" title="Sửa backlog" ></i>
                     <i class="fa-solid fa-trash fa-lg button-danger" (click)="showConfirm(data.id)"></i>
                 </td>

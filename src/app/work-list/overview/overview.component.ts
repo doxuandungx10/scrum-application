@@ -37,6 +37,8 @@ export class OverviewComponent implements OnInit {
     projectId: 0,
   };
   isEditingDescription: boolean = false;
+  userOnline: any;
+
 
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
   focus$ = new Subject<string>();
@@ -57,6 +59,7 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userOnline = JSON.parse(localStorage.getItem('user')!);
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
     });

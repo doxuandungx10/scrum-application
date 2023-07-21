@@ -43,8 +43,8 @@ export class BacklogComponent implements OnInit {
   listOfCurrentPageData: ReadonlyArray<Backlog> = [];
   setOfCheckedId = new Set<number>();
   allCheckedCurrentPage: boolean = false;
-
   listUser: any[] = [];
+  userOnline: any;
 
   constructor(
     private router: ActivatedRoute,
@@ -73,6 +73,7 @@ export class BacklogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userOnline = JSON.parse(localStorage.getItem('user')!);
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
     });

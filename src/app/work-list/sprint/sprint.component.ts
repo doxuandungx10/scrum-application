@@ -40,6 +40,8 @@ export class SprintComponent implements OnInit {
   listSprintTarget: any[] = [];
   // timeOffStart: string;
   // timeOffEnd: string;
+  userOnline: any;
+
   constructor(
     private sprintService: SprintService,
     private sprintbacklogService: SprintbacklogService,
@@ -78,6 +80,7 @@ export class SprintComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.userOnline = JSON.parse(localStorage.getItem('user')!);
     this.router.parent?.params.subscribe((parameter) => {
       this.projectId = parameter.id;
     });

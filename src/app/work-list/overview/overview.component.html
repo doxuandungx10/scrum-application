@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Thành viên</h4>
-                        <button type="button" class="btn light btn-primary" (click)="openModalAddUser()">Thêm mới</button>
+                        <button *ngIf="userOnline.isAdmin" type="button" class="btn light btn-primary" (click)="openModalAddUser()">Thêm mới</button>
                         <!-- <i class="fa-solid fa-ellipsis-vertical" (click)="openModalAddUser()"></i> -->
                     </div>
                     <div class="card-body">
@@ -43,7 +43,7 @@
                                 <td>{{ user.fullName }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.position }}</td>
-                                <td>
+                                <td *ngIf="userOnline.isAdmin">
                                     <i (click)="showConfirm(user.id)" class="fa-solid fa-user-slash button-danger"></i>
                                 </td>
                             </tr>
