@@ -20,6 +20,20 @@
             <div style="padding-top: 0.5rem" (click)="openConvertModal()" class="btn-action" *ngIf="listConvert.length != 0">
                 <span>{{listConvert.length}} mục được chọn</span>
             </div>
+            <div class="dpl-fl status-line">
+                <div class="dpl-fl">
+                    <div class="circle todo-view"></div>
+                    <span class="status-todo">To Do</span>
+                </div>
+                <div class="dpl-fl">
+                    <div class="circle doing-view"></div>
+                    <span class="status-doing">Doing</span>
+                </div>
+                <div class="dpl-fl">
+                    <div class="circle done-view"></div>
+                    <span class="status-done">Done</span>
+                </div>
+            </div>
         </div>
         <div class="table-responsive">
             <!-- <table class="table table-striped"> -->
@@ -35,12 +49,12 @@
                 <th scope="col">Chi tiết</th>
                 <th scope="col">Người thực hiện</th>
                 <th scope="col">Piority</th>
-                <th scope="col">Status</th>
+                <th scope="col">Phần trăm còn lại</th>
                 <th *ngIf="userOnline.isAdmin" scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let data of listBacklog; index as i">
+            <tr *ngFor="let data of listBacklog; index as i" [ngClass]="{'status-todo': data.status == 0, 'status-doing': data.status == 1, 'status-done': data.status == 2}">
                 <td *ngIf="selectedSprint.id != 0">
                     <label nz-checkbox [(ngModel)]="data.checked" [nzDisabled]="(data.percentageRemain == 0)? true: false" (ngModelChange)="changeChecked($event, data)"></label>
                 </td>
@@ -49,7 +63,7 @@
                 <td>{{data.description}}</td>
                 <td>{{data.performerName}}</td>
                 <td>{{data.priority}}</td>
-                <td>{{data.statusText}}</td>
+                <td>{{data.percentageRemain}} %</td>
                 <td *ngIf="userOnline.isAdmin">
                     <i class="fa-solid fa-pen-to-square fa-lg mgr10" (click)="openModalEdit(data)" title="Sửa backlog" ></i>
                     <i class="fa-solid fa-trash fa-lg button-danger" (click)="showConfirm(data.id)"></i>
@@ -94,7 +108,8 @@
             <div class="row mgb-10">
                 <div class="col-md-3">Status</div>
                 <div class="col-md-9">
-                    <div>{{f['statusText'].value}}</div>
+                    <!-- <div>{{f['statusText'].value}}</div> -->
+                    <div>{{convertStatusText(backlogForm.value.status)}}</div>
                     <!-- <input nz-input type="text" formControlName="statusText" nzDisabled="true"> -->
                 </div>
             </div>
@@ -102,6 +117,12 @@
                 <div class="col-md-3">Priority</div>
                 <div class="col-md-9">
                     <input [readonly]="!isAdd" nz-input formControlName="priority" type="number">
+                </div>
+            </div>
+            <div class="row mgb-10">
+                <div class="col-md-3">Phần trăm còn lại</div>
+                <div class="col-md-9">
+                    <input [readonly]="isAdd" nz-input formControlName="percentageRemain" type="number">
                 </div>
             </div>
             <!-- <div class="row">

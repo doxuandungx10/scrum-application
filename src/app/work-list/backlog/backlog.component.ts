@@ -68,6 +68,7 @@ export class BacklogComponent implements OnInit {
       statusText: ['To Do'],
       module: [null],
       priority: 1,
+      percentageRemain: 100
     });
     this.initialValue = this.backlogForm.value;
   }
@@ -121,6 +122,7 @@ export class BacklogComponent implements OnInit {
       statusText: data.statusText,
       category: data.category,
       module: data.module,
+      percentageRemain: data.percentageRemain
     });
     console.log('openModalEdit', data);
     this.isVisibleModalBacklog = true;
@@ -137,6 +139,7 @@ export class BacklogComponent implements OnInit {
       status: form.status,
       category: 1, //form.category,
       module: form.module,
+      percentageRemain: 100
     };
     console.log('addBacklog', this.backlogForm.valid, form.valid, payload);
     //if (this.backlogForm.valid)
@@ -164,8 +167,15 @@ export class BacklogComponent implements OnInit {
         status: form.status,
         category: form.category,
         module: form.module,
+        percentageRemain: form.percentageRemain
       };
-      console.log('huongntt payload', payload);
+      if (form.percentageRemain == 0) {
+        payload.status = 2
+      } else if (form.percentageRemain > 0 && form.percentageRemain < 100) {
+        payload.status = 1
+      } else if (form.percentageRemain == 100) {
+        payload.status = 0
+      }
       this.backlogService.updateBacklog(payload).subscribe((res) => {
         this.notificationService.showNotification(
           Constant.SUCCESS,
