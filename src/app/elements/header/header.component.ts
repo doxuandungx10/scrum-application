@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+import { ProjectService } from 'src/app/services/project.service';
 import { Constant } from 'src/app/share/Constants/Constant';
+import { removeAccents } from 'src/app/share/utils/remove-accents';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +15,37 @@ export class HeaderComponent implements OnInit {
   toggleSingle: boolean = true;
   defaultLightMode: boolean = true;
   @Output() newEvent = new EventEmitter<string>();
+  userOnline: any;
+  listProject: any[] = [];
+  filteredLstProject: any[] = [];
+  textSearch = '';
+  isShowSearch: boolean = false;
+  currentProject: any;
+  projectId: any; 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private projectService: ProjectService,
+    private routerActivate: ActivatedRoute
+    ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.routerActivate.parent?.params.subscribe((parameter) => {
+      this.projectId = parameter.id;
+    });
+    this.userOnline = JSON.parse(localStorage.getItem('user')!);
+    setTimeout(() => {
+      this.getProjectById();
+    }, 500);
+    this.getListProjectByUser();
+  }
+
+  getProjectById() {
+    console.log(this.projectId);
+    
+    this.projectService.getProjectById(this.projectId).subscribe((res) => {
+      this.textSearch = res.name;
+    });
+  }
 
   togglechatbar() {
     this.toggleChat = !this.toggleChat;
@@ -49,10 +78,35 @@ export class HeaderComponent implements OnInit {
       bodyElm[0].setAttribute('data-theme-version', 'dark');
       bodyElm[0].setAttribute('data-primary', 'color_1');
       logo.src = '../../../assets/images/scrum-logo1.png'
-      console.log(logo)
     }
   }
   manageAccount() {
     this.router.navigateByUrl('/manage-user');
+  }
+  getListProjectByUser() {
+    this.projectService.getListProject(this.userOnline.id).subscribe((res) => {
+      this.listProject = res;
+      // this.filteredLstProject = this.listProject;
+    });
+  }
+  onSearch() {
+    const keyword = removeAccents(this.textSearch.trim().toLowerCase());
+    this.filteredLstProject = this.listProject.filter((en) =>
+      removeAccents(en.name?.toString().trim()).toLowerCase().includes(keyword)
+    );
+    
+  }
+  focusFunction() {
+    this.isShowSearch = true;
+  }
+  focusOutFunction() {
+    setTimeout(() => {
+      this.isShowSearch = false; 
+    }, 200);
+  }
+  onSelectProject(data) {
+    this.currentProject = data;
+    this.textSearch = data.name
+    location.href = location.origin + `/general-info/${data.id}`
   }
 }
