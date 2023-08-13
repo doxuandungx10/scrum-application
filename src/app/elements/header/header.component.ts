@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 import { ProjectService } from 'src/app/services/project.service';
+import { ShareService } from 'src/app/services/share.service';
+import { UserService } from 'src/app/services/user.service';
 import { Constant } from 'src/app/share/Constants/Constant';
 import { removeAccents } from 'src/app/share/utils/remove-accents';
 
@@ -21,11 +23,15 @@ export class HeaderComponent implements OnInit {
   textSearch = '';
   isShowSearch: boolean = false;
   currentProject: any;
-  projectId: any; 
+  projectId: any;
+  user: any
+
 
   constructor(private router: Router,
     private projectService: ProjectService,
-    private routerActivate: ActivatedRoute
+    private routerActivate: ActivatedRoute,
+    private userService: UserService,
+    private shareService: ShareService
     ) {}
 
   ngOnInit() {
@@ -37,11 +43,12 @@ export class HeaderComponent implements OnInit {
       this.getProjectById();
     }, 500);
     this.getListProjectByUser();
+    this.getUserInfo();
   }
 
   getProjectById() {
     console.log(this.projectId);
-    
+
     this.projectService.getProjectById(this.projectId).subscribe((res) => {
       this.textSearch = res.name;
     });
@@ -66,7 +73,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('user');
   }
   toggleTheme() {
-    this.defaultLightMode = !this.defaultLightMode; 
+    this.defaultLightMode = !this.defaultLightMode;
     let bodyElm = document.getElementsByTagName('body');
     // let logo = document.getElementsByClassName('brand-title');
     let logo = document.querySelector('img');
@@ -94,19 +101,30 @@ export class HeaderComponent implements OnInit {
     this.filteredLstProject = this.listProject.filter((en) =>
       removeAccents(en.name?.toString().trim()).toLowerCase().includes(keyword)
     );
-    
+
   }
   focusFunction() {
     this.isShowSearch = true;
   }
   focusOutFunction() {
     setTimeout(() => {
-      this.isShowSearch = false; 
-    }, 200);
+      this.isShowSearch = false;
+    }, 400);
   }
   onSelectProject(data) {
     this.currentProject = data;
     this.textSearch = data.name
     location.href = location.origin + `/general-info/${data.id}`
+  }
+
+  getUserInfo() {
+    let id = JSON.parse(localStorage.getItem("user")!).id;
+    this.userService.getUserById(id).subscribe(res => {
+      this.user = res;
+    })
+  }
+
+  convertPosition(pos: number){
+    return this.shareService.convertPosition(pos);
   }
 }

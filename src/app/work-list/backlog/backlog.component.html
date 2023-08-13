@@ -63,7 +63,7 @@
                 <td>{{data.description}}</td>
                 <td>{{data.performerName}}</td>
                 <td>{{data.priority}}</td>
-                <td>{{data.percentageRemain}} %</td>
+                <td>{{data.percentageRemain > 0 ? data.percentageRemain + ' %' : 'Completed'}}</td>
                 <td *ngIf="userOnline.isAdmin">
                     <i class="fa-solid fa-pen-to-square fa-lg mgr10" (click)="openModalEdit(data)" title="Sửa backlog" ></i>
                     <i class="fa-solid fa-trash fa-lg button-danger" (click)="showConfirm(data.id)"></i>
@@ -154,7 +154,7 @@
                     <th>Status</th>
                     <th>Priority</th>
                     <th>Phần trăm còn lại của Backlog</th>
-                    <!-- <th></th> --> 
+                    <!-- <th></th> -->
                 </tr>
             </thead>
             <tbody>

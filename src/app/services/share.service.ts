@@ -11,26 +11,30 @@ export class ShareService extends ConfigService {
     switch(status){
       case 0:
         return "To Do";
-      case 1: 
+      case 1:
         return "Doing";
-      case 2: 
+      case 2:
         return "Done";
-      default: 
+      default:
         return "";
-    } 
+    }
   }
   convertPosition(pos: number): string{
     switch(pos){
       case 1:
         return "Dev";
-      case 2: 
+      case 2:
+        return "Scrum Master";
+      case 3:
+        return "Product Owner";
+      case 4:
         return "Tester";
-      case 3: 
-        return "BA";
-      case 4: 
+      case 5:
         return "Designer";
-      default: 
+      case 4:
+        return "Business Analyst";
+      default:
         return "";
-    } 
+    }
   }
 }
